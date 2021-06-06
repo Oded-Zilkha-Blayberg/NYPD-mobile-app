@@ -14,9 +14,9 @@ export default function suspectIdentification() {
   const classes = useStyles();
 
   return (
-    <View style={classes.container}>
+    <View className={classes.container}>
      
-     <TextField id="outlined-basic" style={classes.input} placeholder="חיפוש תעודת זהות" variant="outlined" InputProps={{
+     <TextField id="outlined-basic" className={classes.input} placeholder="חיפוש תעודת זהות" variant="outlined" InputProps={{
     endAdornment: (
       <InputAdornment>
         <IconButton>
@@ -26,15 +26,22 @@ export default function suspectIdentification() {
     )
   }}></TextField> 
 
-      <Text style={classes.header}>James Bond</Text>
-    <div className={classes.circle}>
+      <Text className={classes.header}>James Bond</Text>
+    <div className={isSuspected = true ? classes.circle : classes.container}>
       <Paper variant="outlined"></Paper>
-    </div>    
+    </div>  
+
+
       <Navbar></Navbar>
       <StatusBar style="auto" />
     </View>
   );
 }
+
+let isSuspected = true
+// turn into a prop of the component
+
+
 
 const useStyles = makeStyles((theme) => ({
   circle: {
@@ -46,19 +53,30 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#ff6757",
       borderRadius: '50%',
     },
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    header: {
-      fontSize: "200px",
-    },
-    input: {
-      direction: "rtl",
-    },
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#ff6757",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    fontSize: "200px",
+  },
+  input: {
+    direction: "rtl",
   },
 }));  
+
+
+// const styles = StyleSheet.create({
+//   container: {
+//       flex: 1,
+//       backgroundColor: '#ff0000',
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//     },
+// });
+
 
 // fix styles, bad brackets
