@@ -8,32 +8,40 @@ import Navbar from "./Navbar";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import Box from '@material-ui/core/Box';
 
 export default function suspectIdentification() {
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
+
     <View className={classes.container}>
      
-     <TextField id="outlined-basic" className={classes.input} placeholder="חיפוש תעודת זהות" variant="outlined" InputProps={{
-    endAdornment: (
-      <InputAdornment>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-      </InputAdornment>
-    )
-  }}></TextField> 
+      <TextField id="outlined-basic" className={classes.input} placeholder="חיפוש תעודת זהות" variant="outlined" InputProps={{
+        endAdornment: (
+            <InputAdornment>
+              <IconButton>
+                <SearchIcon className={classes.icon} />
+              </IconButton>
+            </InputAdornment>
+        )
+      }}></TextField> 
 
-      <Text className={classes.header}>James Bond</Text>
-    <div className={isSuspected = true ? classes.circle : classes.container}>
-      <Paper variant="outlined"></Paper>
-    </div>  
+    <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper"> 
+      <div className={classes.header}>James Bond</div>
+    </Box>
 
+    <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
+        <div className={isSuspected == true ? classes.SuspiciousCircle : classes.UnsuspiciousCircle}>
+          <Paper variant="outlined"></Paper>
+        </div>  
+    </Box>
 
       <Navbar></Navbar>
+
       <StatusBar style="auto" />
+
     </View>
   );
 }
@@ -44,39 +52,44 @@ let isSuspected = true
 
 
 const useStyles = makeStyles((theme) => ({
-  circle: {
+  SuspiciousCircle: {
     display: 'flex',
     '& > *': {
       margin: theme.spacing(1),
-      width: theme.spacing(20),
-      height: theme.spacing(20),  
+      width: theme.spacing(24),
+      height: theme.spacing(24),  
       backgroundColor: "#ff6757",
+      borderRadius: '50%',
+      // alignContent: 'center',
+    },
+  },
+  UnsuspiciousCircle: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(24),
+      height: theme.spacing(24),  
+      backgroundColor: "#b5ec97",
       borderRadius: '50%',
     },
   },
   container: {
     flex: 1,
-    backgroundColor: "#ff6757",
+    backgroundColor: '#ff6757',
     alignItems: 'center',
     justifyContent: 'center',
   },
   header: {
-    fontSize: "200px",
+    fontSize: "35px"
   },
   input: {
     direction: "rtl",
+    float: "top",
+  },
+  icon: {
+    float: "right",
+    // wah
   },
 }));  
-
-
-// const styles = StyleSheet.create({
-//   container: {
-//       flex: 1,
-//       backgroundColor: '#ff0000',
-//       alignItems: 'center',
-//       justifyContent: 'center',
-//     },
-// });
-
 
 // fix styles, bad brackets
