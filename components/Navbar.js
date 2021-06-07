@@ -4,6 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { ThemeProvider, Header } from 'react-native-elements';
+
 
 import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
@@ -54,7 +56,12 @@ export default function Navbar() {
   return (
     <React.Fragment>
       <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
+      <Header
+            leftComponent={{ icon: 'menu', color: '#fff' }}
+            centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
+            rightComponent={{ icon: 'home', color: '#fff' }}
+            />
+        {/* <AppBar position="fixed" className={classes.appBar}>
             <BottomNavigation
             // value={value}
             // onChange={(event, newValue) => {
@@ -71,7 +78,7 @@ export default function Navbar() {
                 <BottomNavigationAction label="מפה" icon={<MapRoundedIcon />}/>
                 <BottomNavigationAction label="דיווחים" icon={<AnnouncementRoundedIcon />}/>
             </BottomNavigation>                   
-        </AppBar> 
+        </AppBar>  */}
     </React.Fragment>
   );
 }

@@ -8,6 +8,8 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import Basepage from "./components/Basepage";
 import NewReport from "./views/NewReport";
 import SuspectCard from "./components/suspectIdentification";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 
 
 
@@ -16,16 +18,18 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 export default function App() {
   return (
+    <SafeAreaProvider>
     <StylesProvider jss={jss}>
       <View style={styles.container}>
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-          
+
         <Basepage title="יצירת דיווח" icon="info">
           <SuspectCard />
         </Basepage>
         <StatusBar style="auto" />
       </View>
   </StylesProvider>
+  </SafeAreaProvider>
   );
 }
 
