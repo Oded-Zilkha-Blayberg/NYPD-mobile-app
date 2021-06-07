@@ -7,7 +7,8 @@ import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import Basepage from "./components/Basepage";
 import NewReport from "./views/NewReport";
-import SuspectCard from "./components/suspectIdentification"
+import SuspectCard from "./components/suspectIdentification";
+
 
 
 // Configure JSS
@@ -20,7 +21,7 @@ export default function App() {
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           
         <Basepage title="יצירת דיווח" icon="info">
-          <NewReport />
+          <SuspectCard />
         </Basepage>
         <StatusBar style="auto" />
       </View>

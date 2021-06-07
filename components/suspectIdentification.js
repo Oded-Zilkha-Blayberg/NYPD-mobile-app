@@ -9,6 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import Box from '@material-ui/core/Box';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 
 export default function suspectIdentification() {
 
@@ -33,9 +35,10 @@ export default function suspectIdentification() {
     </Box>
 
     <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
-        <div className={isSuspected == true ? classes.SuspiciousCircle : classes.UnsuspiciousCircle}>
+        <CheckCircleRoundedIcon className={isSuspected == true ? classes.SuspiciousCircle : classes.UnsuspiciousCircle}/>
+        {/* <div className={isSuspected == true ? classes.SuspiciousCircle : classes.UnsuspiciousCircle}>
           <Paper variant="outlined"></Paper>
-        </div>  
+        </div>   */}
     </Box>
 
       <Navbar></Navbar>
@@ -46,32 +49,19 @@ export default function suspectIdentification() {
   );
 }
 
-let isSuspected = true
+let isSuspected = false
 // turn into a prop of the component
 
 
 
 const useStyles = makeStyles((theme) => ({
   SuspiciousCircle: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(24),
-      height: theme.spacing(24),  
-      backgroundColor: "#ff6757",
-      borderRadius: '50%',
-      // alignContent: 'center',
-    },
+    color: 'red',
+    fontSize: 200,
   },
   UnsuspiciousCircle: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(24),
-      height: theme.spacing(24),  
-      backgroundColor: "#b5ec97",
-      borderRadius: '50%',
-    },
+    color: 'green',
+    fontSize: 200,
   },
   container: {
     flex: 1,
