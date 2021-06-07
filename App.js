@@ -9,6 +9,7 @@ import Basepage from "./components/Basepage";
 import NewReport from "./views/NewReport";
 import SuspectCard from "./components/suspectIdentification";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import LoginPage from "./components/LoginPage";
 
 
 
@@ -23,9 +24,10 @@ export default function App() {
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           <link rel="stylesheet" href="./StyleSheets/App.css" />
 
-        <Basepage title="יצירת דיווח" icon="info">
+        {/* <Basepage title="יצירת דיווח" icon="info">
           <NewReport />
-        </Basepage>
+        </Basepage> */}
+        <LoginPage></LoginPage>
         <StatusBar style="auto" />
       </View>
   </StylesProvider>
