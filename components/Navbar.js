@@ -7,17 +7,40 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { FAB } from 'react-native-elements';
 
+// const heebo = <style> 
+// @font-face {
+//   font-family: myFirstFont;
+//   src: url(sansation_light.woff);
+// }
+
+// @font-face {
+//   font-family: myFirstFont;
+//   src: url(sansation_bold.woff);
+//   font-weight: bold;
+// }
+
+// div {
+//   font-family: myFirstFont;
+// }
+// </style>
 
 const styles = StyleSheet.create({
   
   appBar: {
-    justifyContent: "space-between",
+    justifyContent: 'space-around',
+    alignItems: 'center',
     flexDirection: "row",
     position:"absolute",
     width: "100%",
     padding: 20,
     backgroundColor:'#f8f9fb',
     bottom: 0,
+  },
+
+  navIcon: {
+    alignSelf: 'center',
+    alignItem:'center',
+    fontSize: 35
   },
   
   fabButton: {
@@ -36,13 +59,13 @@ export default function Navbar() {
   return (
     <React.Fragment>
         <Divider style={styles.appBar}>
-            <Icon name='home' />
-            <Icon name='search'/>
+            <Icon name='home' iconStyle={styles.navIcon} />
+            <Icon name='search' iconStyle={styles.navIcon} />
             <FAB icon={{ name: "add", color: "white"}}
                 color="#040848" />
 
-            <Icon name='map' />
-            <Icon name='announcement' />
+            <Icon name='map' iconStyle={styles.navIcon} />
+            <Icon name='announcement' iconStyle={styles.navIcon} />
         </Divider>
 
         {/* <AppBar position="fixed" className={classes.appBar}>

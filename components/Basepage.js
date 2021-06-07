@@ -7,6 +7,8 @@ import { StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
     titleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
         flexDirection: "row",
         backgroundColor:"#040848",
         color:"white",
@@ -15,8 +17,9 @@ const styles = StyleSheet.create({
         height:"16%",
         top:"0%",
         borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,      
-    }
+        borderBottomRightRadius: 20,
+        fontFamily:"Heebo-VariableFont"
+    },
 });
 
 export default function Basepage(props) {
@@ -24,7 +27,7 @@ export default function Basepage(props) {
         <React.Fragment>
             <Divider style={styles.titleContainer}>
                 <Icon name={props.icon} color="white" />
-                {props.title}
+                <h3>{props.title}</h3>
             </Divider>
             <View>
                 {props.children}
