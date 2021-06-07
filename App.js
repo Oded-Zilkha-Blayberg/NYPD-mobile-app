@@ -2,17 +2,32 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Navbar from "./components/Navbar";
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import Basepage from "./components/Basepage";
+import NewReport from "./views/NewReport";
 import SuspectCard from "./components/suspectIdentification"
+
+
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <SuspectCard></SuspectCard>
-      <Navbar></Navbar>
-      <StatusBar style="auto" />
-    </View>
+    <StylesProvider jss={jss}>
+      <View style={styles.container}>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          
+        <Basepage title="יצירת דיווח" icon="info">
+          <NewReport />
+        </Basepage>
+        <StatusBar style="auto" />
+      </View>
+  </StylesProvider>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    direction: 'rtl',
   },
 });
 

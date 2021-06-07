@@ -2,21 +2,18 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Paper from '@material-ui/core/Paper';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+
 import Fab from '@material-ui/core/Fab';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Avatar from '@material-ui/core/Avatar';
-import MenuIcon from '@material-ui/icons/Menu';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import AnnouncementRoundedIcon from '@material-ui/icons/AnnouncementRounded';
+import MapRoundedIcon from '@material-ui/icons/MapRounded';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { View } from 'react-native';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   appBar: {
+    color: '#f8f9fb',
     top: 'auto',
     bottom: 0,
   },
@@ -41,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fabButton: {
     position: 'absolute',
+    backgroundColor: '#040848',
     zIndex: 1,
     top: -30,
     left: 0,
@@ -55,23 +54,24 @@ export default function Navbar() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="open drawer">
-            <MenuIcon />
-          </IconButton>
-          <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-            <AddIcon />
-          </Fab>
-          <div className={classes.grow} />
-          <IconButton color="inherit">
-            <SearchIcon />
-          </IconButton>
-          <IconButton edge="end" color="inherit">
-            <MoreIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+        <AppBar position="fixed" className={classes.appBar}>
+            <BottomNavigation
+            // value={value}
+            // onChange={(event, newValue) => {
+            //     setValue(newValue);
+            // }}
+            showLabels
+            className={classes.root}
+            >
+                <BottomNavigationAction label="בית" icon={<HomeRoundedIcon />} />
+                <BottomNavigationAction label="זיהוי חשוד" icon={<SearchRoundedIcon />} />
+                <Fab aria-label="add" color="inherit" className={classes.fabButton}>
+                    <AddIcon />
+                </Fab>
+                <BottomNavigationAction label="מפה" icon={<MapRoundedIcon />}/>
+                <BottomNavigationAction label="דיווחים" icon={<AnnouncementRoundedIcon />}/>
+            </BottomNavigation>                   
+        </AppBar> 
     </React.Fragment>
   );
 }
