@@ -1,40 +1,43 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Navbar from "./Navbar";
-import Box from "@material-ui/core/Box";
-import Icon from '@material-ui/core/Icon';
 import { StyleSheet, View, Text} from 'react-native';
+import { Icon } from 'react-native-elements';
+import { Divider } from 'react-native-elements';
+import "@fontsource/heebo";
 
-
-
-// const useStyles = makeStyles((theme) => ({
-//     titleContainer: {
-//         backgroundColor:"#040848",
-//         color:"white",
-//         position:"absolute",
-//         top:"{40}",
-//         width:"100%",
-//         top:"0%",
-//         zIndex:"tooltip",
-//         borderRadius:"0px 0px 25px 25px",
-      
-//     }
-//   }));
+const styles = StyleSheet.create({
+    titleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: "row",
+        backgroundColor:"#040848",
+        color:"white",
+        position:"absolute",
+        width:"100%",
+        height:"12%",
+        top:"0%",
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        fontFamily:"heebo",
+        fontSize: 25,
+    },
+    title: {
+        padding: 20,
+        color: 'white',
+    }
+});
 
 export default function Basepage(props) {
-  
-
     return (
-      <React.Fragment>
-        {/* <Box  p={7}>
-        className={classes.titleContainer}
-            <Icon>{props.icon}</Icon>
-            <Text>{props.title}</Text>
-        </Box> */}
-        <View>
-            {props.children}
-        </View>
-        <Navbar></Navbar>
-      </React.Fragment>
+        <React.Fragment>
+            <Divider style={styles.titleContainer}>
+                <Icon name={props.icon} size="40px" color="white" iconStyle={styles.title}/>
+                <Text style={styles.title}>{props.title}</Text>
+            </Divider>
+            <View>
+                {props.children}
+            </View>
+            <Navbar></Navbar>
+        </React.Fragment>
     );
-  }
+}
