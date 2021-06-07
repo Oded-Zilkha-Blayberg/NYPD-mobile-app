@@ -6,8 +6,15 @@ import Basepage from "./components/Basepage";
 
 export default function App() {
   return (
+
     <View style={styles.container}>
-      <Basepage></Basepage>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+      <Basepage title="hello I'm a temporary title" icon="build">
+        <h1>
+          hhhhhhhhhhhhhhh
+        </h1>
+      </Basepage>
       <StatusBar style="auto" />
     </View>
   );

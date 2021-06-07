@@ -2,7 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from "./Navbar";
 import Box from "@material-ui/core/Box";
-import { positions } from '@material-ui/system';
+import Icon from '@material-ui/core/Icon';
+import { StyleSheet, View } from 'react-native';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,18 +18,22 @@ const useStyles = makeStyles((theme) => ({
         zIndex:"tooltip",
         borderRadius:"0px 0px 25px 25px",
       
-    },
+    }
   }));
 
-export default function Basepage() {
+export default function Basepage(props) {
     const classes = useStyles();
-  
+
     return (
       <React.Fragment>
-          <Box className={classes.titleContainer} p={7}>
-                KKKKKKKKKKKKKKK
-          </Box>
-         <Navbar></Navbar>
+        <Box className={classes.titleContainer} p={7}>
+            <Icon>{props.icon}</Icon>
+            <h3>{props.title}</h3>
+        </Box>
+        <View>
+            {props.children}
+        </View>
+        <Navbar></Navbar>
       </React.Fragment>
     );
   }
