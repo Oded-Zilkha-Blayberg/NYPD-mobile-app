@@ -10,6 +10,9 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import AnnouncementRoundedIcon from '@material-ui/icons/AnnouncementRounded';
 import MapRoundedIcon from '@material-ui/icons/MapRounded';
 import AddIcon from '@material-ui/icons/Add';
+import SearchIcon from '@material-ui/icons/Search';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import { View } from 'react-native';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 
@@ -67,7 +70,6 @@ export default function Navbar() {
                 </Fab>
                 <BottomNavigationAction label="מפה" icon={<MapRoundedIcon />}/>
                 <BottomNavigationAction label="דיווחים" icon={<AnnouncementRoundedIcon />}/>
-            
             </BottomNavigation>                   
         </AppBar> 
     </React.Fragment>
