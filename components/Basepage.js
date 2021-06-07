@@ -1,39 +1,35 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Navbar from "./Navbar";
-import Box from "@material-ui/core/Box";
-import Icon from '@material-ui/core/Icon';
+import { Icon } from 'react-native-elements';
+import { Divider } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native';
 
 
-
-const useStyles = makeStyles((theme) => ({
+const styles = StyleSheet.create({
     titleContainer: {
+        flexDirection: "row",
         backgroundColor:"#040848",
         color:"white",
         position:"absolute",
-        top:"{40}",
         width:"100%",
+        height:"16%",
         top:"0%",
-        zIndex:"tooltip",
-        borderRadius:"0px 0px 25px 25px",
-      
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,      
     }
-  }));
+});
 
 export default function Basepage(props) {
-    const classes = useStyles();
-
     return (
-      <React.Fragment>
-        <Box className={classes.titleContainer} p={7}>
-            <Icon>{props.icon}</Icon>
-            <h3>{props.title}</h3>
-        </Box>
-        <View>
-            {props.children}
-        </View>
-        <Navbar></Navbar>
-      </React.Fragment>
+        <React.Fragment>
+            <Divider style={styles.titleContainer}>
+                <Icon name={props.icon} color="white" />
+                {props.title}
+            </Divider>
+            <View>
+                {props.children}
+            </View>
+            <Navbar></Navbar>
+        </React.Fragment>
     );
-  }
+}
