@@ -21,7 +21,7 @@ export default function App() {
     <SafeAreaProvider>
     <StylesProvider jss={jss}>
       <View style={styles.container}>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          {/* <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> */}
 
         <Basepage title="יצירת דיווח" icon="info">
           <SuspectCard />
