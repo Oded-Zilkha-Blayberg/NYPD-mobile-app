@@ -1,95 +1,87 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { StyleSheet, Text, View} from 'react-native';
 import Navbar from "./Navbar";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import SearchIcon from "@material-ui/icons/Search";
-import Box from '@material-ui/core/Box';
+import { SearchBar, Header } from 'react-native-elements';
+import { Icon, Input, Card } from 'react-native-elements';
+// import "@fontsource/heebo";
+
+// working on searchbar
 
 export default function suspectIdentification() {
 
-  const classes = useStyles()
+
 
   return (
-
-    <View className={classes.container}>
+    
+    // <View className={classes.container}>
+    <View>
      
-      <TextField id="outlined-basic" className={classes.input} placeholder="חיפוש תעודת זהות" variant="outlined" InputProps={{
-        endAdornment: (
-            <InputAdornment>
-              <IconButton>
-                <SearchIcon className={classes.icon} />
-              </IconButton>
-            </InputAdornment>
-        )
-      }}></TextField> 
+     {/* <SearchBar
+        placeholder="חיפוש לפי תעודת זהות"
+        inputStyle={{backgroundColor: 'white'}}
+        containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+       
+      /> */}
 
-    <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper"> 
-      <div className={classes.header}>James Bond</div>
-    </Box>
+<Input
+  placeholder="תעודת זהות"
+  style={{ textAlign: 'center' }}
+  rightIcon={{ name: 'search' }}
+  selectionColor='black'
+/>
 
-    <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
-        <div className={isSuspected == true ? classes.SuspiciousCircle : classes.UnsuspiciousCircle}>
-          <Paper variant="outlined"></Paper>
-        </div>  
-    </Box>
+    <Card style={styles.card}>
+      
 
-      <Navbar></Navbar>
+     <Text style={{textAlign: 'center', fontSize: 32 }}>James Bond</Text>
+     {/* fontFamily: 'Heebo' */}
 
-      <StatusBar style="auto" />
+     <Card.Divider />
 
+       <Icon name="check" style={ isSuspected ? styles.disabledIcon : styles.activeIcon } color='green' size='180px' disabled='false' disabledStyle={{  backgroundColor: 'white' }}></Icon>
+       <Icon name="close" style={ isSuspected ? styles.activeIcon : styles.disabledIcon } color='red' size='180px' disabled='true' disabledStyle={{  backgroundColor: 'white' }}></Icon>
+      
+       
+    
+     <Text style={ isSuspected ? styles.disabledHeader : styles.activeHeader }>אינו חשוד</Text> 
+     <Text style={ isSuspected ? styles.activeHeader : styles.disabledHeader }>חשוד</Text> 
+
+     </Card>
     </View>
   );
 }
 
-let isSuspected = true
+let isSuspected = false
 // turn into a prop of the component
 
 
+const styles = StyleSheet.create({
+  activeIcon: {
+    
+  },
+  disabledIcon: {
+    display: 'none',
+  },
+  activeHeader: {
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  disabledHeader: { 
+    textAlign: 'center',
+    fontSize: 18,
+    display: 'none',
+  },
+  suspectName: {
+    textAlign: 'center',
+  },
+});
 
-const useStyles = makeStyles((theme) => ({
-  SuspiciousCircle: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(24),
-      height: theme.spacing(24),  
-      backgroundColor: "#ff6757",
-      borderRadius: '50%',
-      // alignContent: 'center',
-    },
-  },
-  UnsuspiciousCircle: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(24),
-      height: theme.spacing(24),  
-      backgroundColor: "#b5ec97",
-      borderRadius: '50%',
-    },
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#ff6757',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header: {
-    fontSize: "35px"
-  },
-  input: {
-    direction: "rtl",
-    float: "top",
-  },
-  icon: {
-    float: "right",
-    // wah
-  },
-}));  
+// container: {
+//   flex: 1,
+//   backgroundColor: '#ff6757',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+// },
 
 // fix styles, bad brackets
