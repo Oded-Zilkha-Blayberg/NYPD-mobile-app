@@ -7,10 +7,11 @@ import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import Basepage from "./components/Basepage";
 import NewReport from "./views/NewReport";
+import SuspectCard from "./components/suspectIdentification"
+
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-
 
 export default function App() {
   return (
