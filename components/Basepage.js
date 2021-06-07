@@ -1,10 +1,9 @@
 import React from 'react';
 import Navbar from "./Navbar";
+import { StyleSheet, View, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Divider } from 'react-native-elements';
-import { StyleSheet, View } from 'react-native';
 import "@fontsource/heebo";
-
 
 const styles = StyleSheet.create({
     titleContainer: {
@@ -23,7 +22,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
     title: {
-        padding: 20
+        padding: 20,
+        color: 'white',
     }
 });
 
@@ -32,7 +32,7 @@ export default function Basepage(props) {
         <React.Fragment>
             <Divider style={styles.titleContainer}>
                 <Icon name={props.icon} size="40px" color="white" iconStyle={styles.title}/>
-                <h3>{props.title}</h3>
+                <Text style={styles.title}>{props.title}</Text>
             </Divider>
             <View>
                 {props.children}

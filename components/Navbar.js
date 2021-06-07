@@ -7,23 +7,6 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { FAB } from 'react-native-elements';
 
-// const heebo = <style> 
-// @font-face {
-//   font-family: myFirstFont;
-//   src: url(sansation_light.woff);
-// }
-
-// @font-face {
-//   font-family: myFirstFont;
-//   src: url(sansation_bold.woff);
-//   font-weight: bold;
-// }
-
-// div {
-//   font-family: myFirstFont;
-// }
-// </style>
-
 const styles = StyleSheet.create({
   
   appBar: {
