@@ -1,40 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import ShootingForm from '../components/reportsForms/ShootingForm.js';
-import Chip from '@material-ui/core/Chip';
+import { Chip, Divider } from 'react-native-elements';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    direction: 'rtl',
-    '& > *': {
-      margin: theme.spacing(0.5),
-    },
-  },
-  chip: {
-      color: '#ffffff',
-  },
-  red: {
-    background: '#ef5350',
-  },
-  orange: {
-    background: '#ffa726',
-  },
-  yellow: {
-    background: '#fdd835',
-  },
-  teal: {
-    background: '#26a69a',
-  },
-  textField: {
-      float: 'right'
-  },
-}));
-
-export default function Chips() {
-  const classes = useStyles();
+export default function NewReport() {
 
   const handleDelete = () => {
     console.info('You clicked the delete icon.');
@@ -45,32 +13,55 @@ export default function Chips() {
   };
 
   return (
-    <div className={classes.root}>
-        <Chip
-        label="ירי"
-        className={[classes.chip, classes.red]}
-        clickable
-        />
-        
-        <Chip
-        label="דקירה"
-        className={[classes.chip, classes.orange]}
-        clickable
-        />
-        
-        <Chip
-        label="חטיפה"
-        className={[classes.chip, classes.yellow]}
-        clickable
-        />
+    <Divider
+    style={{
+      borderBottomWidth: '0px',
+    }}>
+        <Divider
+        style={{
+          borderBottomWidth: '0px',
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginBottom: '3vh',
+        }}>
+          <Chip
+          title="ירי"
+          buttonStyle={{
+            backgroundColor: '#ef5350',
+            marginHorizontal: '2vw',
+            width: '17vw',
+          }}
+          />
+          
+          <Chip
+          title="דקירה"
+          buttonStyle={{
+            backgroundColor: '#ffa726',
+            marginHorizontal: '2vw',
+            width: '17vw',
+          }}
+          />
 
-        <Chip
-        label="תאונה"
-        className={[classes.chip, classes.teal]}
-        clickable
-        />
+          <Chip
+          title="חטיפה"
+          buttonStyle={{
+            backgroundColor: '#fdd835',
+            marginHorizontal: '2vw',
+            width: '17vw',
+          }}
+          />
+
+          <Chip
+          title="תאונה"
+          buttonStyle={{
+            backgroundColor: '#26a69a',
+            marginHorizontal: '2vw',
+            width: '17vw',
+          }}
+          />
+        </Divider>
 
         <ShootingForm></ShootingForm>
-    </div>
+    </Divider>
   );
 }
