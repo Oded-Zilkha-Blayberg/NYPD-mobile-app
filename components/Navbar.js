@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 
   navIcon: {
     alignSelf: 'center',
-    alignItem:'center',
+    alignItems:'center',
     fontSize: 35
   },
   

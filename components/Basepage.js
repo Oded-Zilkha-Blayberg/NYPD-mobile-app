@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { Icon } from 'react-native-elements';
 import { Divider } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native';
-import "@fontsource/heebo";
+// import "@fontsource/heebo";
 
 
 const styles = StyleSheet.create({
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         top:"0%",
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-        fontFamily:"heebo",
+        // fontFamily:"heebo",
         fontSize: 25,
     },
     title: {

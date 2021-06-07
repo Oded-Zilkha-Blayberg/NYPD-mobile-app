@@ -21,10 +21,9 @@ export default function App() {
     <StylesProvider jss={jss}>
       <View style={styles.container}>
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-          <link rel="stylesheet" href="./StyleSheets/App.css" />
 
         <Basepage title="יצירת דיווח" icon="info">
-          <NewReport />
+          <SuspectCard />
         </Basepage>
         <StatusBar style="auto" />
       </View>
