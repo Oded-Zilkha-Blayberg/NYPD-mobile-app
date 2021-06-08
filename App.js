@@ -7,7 +7,7 @@ import IdentifyScreen from './views/IdentifyScreen';
 import MapScreen from "./views/MapScreen";
 import NewReportScreen from "./views/NewReportScreen";
 import { StyleSheet, Text, View } from 'react-native';
-import LoginPage from "./components/LoginPage";
+import LoginScreen from "./views/LoginScreen";
 
 
 
@@ -31,6 +31,9 @@ export default function App() {
             <Stack.Screen 
               name="newReport" 
               component={NewReportScreen} />
+            <Stack.Screen 
+              name="login" 
+              component={LoginScreen} />
           
       </Stack.Navigator>
     </NavigationContainer>

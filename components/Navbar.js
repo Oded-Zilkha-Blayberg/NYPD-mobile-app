@@ -42,7 +42,8 @@ export default function Navbar({navigation}) {
   return (
     <React.Fragment>
         <Divider style={styles.appBar}>
-            <Icon name='home' iconStyle={styles.navIcon} />
+            <Icon name='home' iconStyle={styles.navIcon} 
+            onPress={() => navigation.navigate('login')}/>
             <Icon name='search' iconStyle={styles.navIcon} 
             onPress={() => navigation.navigate('identification')} />
             <FAB icon={{ name: "add", color: "white"}}
