@@ -11,6 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import NewReport from "../components/NewReport";
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -32,8 +33,8 @@ const styles = StyleSheet.create({
 
               {/* <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> */}
 
-            <Basepage title="זיהוי חשוד" icon="block" navigation={navigation}>
-              <SuspectCard />
+            <Basepage title="יצירת דיווח " icon="error" navigation={navigation}>
+                <NewReport />              
             </Basepage>
             <StatusBar style="auto" />
           </View>

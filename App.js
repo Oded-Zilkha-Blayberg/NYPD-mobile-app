@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import IdentifyScreen from './views/IdentifyScreen';
 import MapScreen from "./views/MapScreen";
-// import NewReport from "./views/NewReport";
+import NewReportScreen from "./views/NewReportScreen";
 import { StyleSheet, Text, View } from 'react-native';
 
 
@@ -26,7 +26,9 @@ export default function App() {
               name="map"
               component={MapScreen}
             />
-          {/* <Stack.Screen name="newReport" component={NewReport} /> */}
+            <Stack.Screen 
+              name="newReport" 
+              component={NewReportScreen} />
           
       </Stack.Navigator>
     </NavigationContainer>

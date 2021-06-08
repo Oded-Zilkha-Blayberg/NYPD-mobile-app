@@ -6,7 +6,6 @@ import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import Basepage from "../components/Basepage";
-// import NewReport from "./views/NewReport";
 import SuspectCard from "../components/suspectIdentification";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';

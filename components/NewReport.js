@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import ShootingForm from '../components/reportsForms/ShootingForm.js';
-import StabbingForm from '../components/reportsForms/StabbingForm.js';
-import KidnapForm from '../components/reportsForms/KidnapForm.js';
-import AccidentForm from '../components/reportsForms/AccidentForm.js';
+import ShootingForm from './reportsForms/ShootingForm.js';
+import StabbingForm from './reportsForms/StabbingForm.js';
+import KidnapForm from './reportsForms/KidnapForm.js';
+import AccidentForm from './reportsForms/AccidentForm';
 import { Chip, Divider } from 'react-native-elements';
 import { StyleSheet } from 'react-native';
 
 export default function NewReport() {
 const [flag,setFlag]=useState(0);
 
-
-  
   return (
     <Divider
     style={{
