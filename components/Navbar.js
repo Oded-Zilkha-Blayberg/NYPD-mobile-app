@@ -1,44 +1,31 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { ThemeProvider, Header } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
+import { Divider } from 'react-native-elements';
+import { StyleSheet, View } from 'react-native';
 
+import { Button } from 'react-native-elements';
+import { FAB } from 'react-native-elements';
 
-import Fab from '@material-ui/core/Fab';
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import AnnouncementRoundedIcon from '@material-ui/icons/AnnouncementRounded';
-import MapRoundedIcon from '@material-ui/icons/MapRounded';
-import AddIcon from '@material-ui/icons/Add';
-import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import { View } from 'react-native';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-
-
-const useStyles = makeStyles((theme) => ({
-  text: {
-    padding: theme.spacing(2, 2, 0),
-  },
-  paper: {
-    paddingBottom: 50,
-  },
-  list: {
-    marginBottom: theme.spacing(2),
-  },
-  subheader: {
-    backgroundColor: theme.palette.background.paper,
-  },
+const styles = StyleSheet.create({
+  
   appBar: {
-    color: '#f8f9fb',
-    top: 'auto',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: "row",
+    position:"absolute",
+    width: "100%",
+    padding: 20,
+    backgroundColor:'#f8f9fb',
     bottom: 0,
   },
-  grow: {
-    flexGrow: 1,
+
+  navIcon: {
+    alignSelf: 'center',
+    alignItems:'center',
+    fontSize: 35
   },
+  
   fabButton: {
     position: 'absolute',
     backgroundColor: '#040848',
@@ -48,19 +35,22 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     margin: '0 auto',
   },
-}));
+});
 
 export default function Navbar() {
-  const classes = useStyles();
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <Header
-            leftComponent={{ icon: 'menu', color: '#fff' }}
-            centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-            rightComponent={{ icon: 'home', color: '#fff' }}
-            />
+        <Divider style={styles.appBar}>
+            <Icon name='home' iconStyle={styles.navIcon} />
+            <Icon name='search' iconStyle={styles.navIcon} />
+            <FAB icon={{ name: "add", color: "white"}}
+                color="#040848" />
+
+            <Icon name='map' iconStyle={styles.navIcon} />
+            <Icon name='announcement' iconStyle={styles.navIcon} />
+        </Divider>
+
         {/* <AppBar position="fixed" className={classes.appBar}>
             <BottomNavigation
             // value={value}

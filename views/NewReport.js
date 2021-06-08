@@ -3,15 +3,6 @@ import ShootingForm from '../components/reportsForms/ShootingForm.js';
 import { Chip, Divider } from 'react-native-elements';
 
 export default function NewReport() {
-
-  const handleDelete = () => {
-    console.info('You clicked the delete icon.');
-  };
-
-  const handleClick = () => {
-    console.info('You clicked the Chip.');
-  };
-
   return (
     <Divider
     style={{
