@@ -1,0 +1,12 @@
+@font-face {
+    font-family: Heebo;
+    src: url("../assets/Heebo-VariableFont_wght.ttf");
+}
+
+Basepage {
+    background-color: #282c34;
+    color: red;
+    padding: 40px;
+    font-family: Heebo;
+    text-align: center;
+}
