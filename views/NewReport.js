@@ -1,76 +1,94 @@
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import ShootingForm from '../components/reportsForms/ShootingForm.js';
-// import Chip from '@material-ui/core/Chip';
+import React, { useState } from 'react';
+import ShootingForm from '../components/reportsForms/ShootingForm.js';
+import StabbingForm from '../components/reportsForms/StabbingForm.js';
+import KidnapForm from '../components/reportsForms/KidnapForm.js';
+import AccidentForm from '../components/reportsForms/AccidentForm.js';
+import { Chip, Divider } from 'react-native-elements';
+import { StyleSheet } from 'react-native';
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     flexWrap: 'wrap',
-//     direction: 'rtl',
-//     '& > *': {
-//       margin: theme.spacing(0.5),
-//     },
-//   },
-//   chip: {
-//       color: '#ffffff',
-//   },
-//   red: {
-//     background: '#ef5350',
-//   },
-//   orange: {
-//     background: '#ffa726',
-//   },
-//   yellow: {
-//     background: '#fdd835',
-//   },
-//   teal: {
-//     background: '#26a69a',
-//   },
-//   textField: {
-//       float: 'right'
-//   },
-// }));
+export default function NewReport() {
+const [flag,setFlag]=useState(0);
 
-// export default function Chips() {
-//   const classes = useStyles();
 
-//   const handleDelete = () => {
-//     console.info('You clicked the delete icon.');
-//   };
+  
+  return (
+    <Divider
+    style={{
+      borderBottomWidth: '0px',
+      // position:"absolute",
+      // top: 0,
+      // flexDirection: "row",
+    }}>
+        <Divider
+        style={{
+          borderBottomWidth: '0px',
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginBottom: '3%',
+          justifyContent: 'center',
+        }}>
+          <Chip
+          title="ירי"
+          buttonStyle={{
+            backgroundColor: '#ef5350',
+            marginHorizontal: '5%',
+          }}
+          onPress={() => {setFlag(1)}}
+          />
+          
+          <Chip
+          title="דקירה"
+          buttonStyle={{
+            backgroundColor: '#ffa726',
+            marginHorizontal: '5%',
+          }}
+          onPress={() => {setFlag(2)}}
+          />
 
-//   const handleClick = () => {
-//     console.info('You clicked the Chip.');
-//   };
+          <Chip
+          title="חטיפה"
+          buttonStyle={{
+            backgroundColor: '#fdd835',
+            marginHorizontal: '5%',
+          }}
+          onPress={() => {setFlag(3)}}
+          />
 
-//   return (
-//     <div className={classes.root}>
-//         <Chip
-//         label="ירי"
-//         className={[classes.chip, classes.red]}
-//         clickable
-//         />
-        
-//         <Chip
-//         label="דקירה"
-//         className={[classes.chip, classes.orange]}
-//         clickable
-//         />
-        
-//         <Chip
-//         label="חטיפה"
-//         className={[classes.chip, classes.yellow]}
-//         clickable
-//         />
+          <Chip
+          title="תאונה"
+          buttonStyle={{
+            backgroundColor: '#26a69a',
+            marginHorizontal: '5%',
+          }}
+          onPress={() => {setFlag(4)}}
+          />
+       
+        </Divider>
+       {
+         flag==1 ?
+        <ShootingForm ></ShootingForm>
+        : 
+        flag==2 ?
+        <StabbingForm></StabbingForm>
+      :
+      flag ==3 ? 
+      <KidnapForm></KidnapForm>
+      :
+      flag==4 ?
+      <AccidentForm></AccidentForm>
+      :
+      null
+      
+      }
+    </Divider>
+  );
+}
 
-//         <Chip
-//         label="תאונה"
-//         className={[classes.chip, classes.teal]}
-//         clickable
-//         />
 
-//         <ShootingForm></ShootingForm>
-//     </div>
-//   );
-// }
+const styles = StyleSheet.create({
+  show: {
+  },
+  hide: {
+    display: 'none',
+  },
+});

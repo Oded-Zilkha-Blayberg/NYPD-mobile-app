@@ -3,7 +3,7 @@ import { Divider, Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
 
-export default function ShootingForm() {
+export default function StabbingForm() {
 
   return (
     <Divider
@@ -11,7 +11,7 @@ export default function ShootingForm() {
       borderBottomWidth: '0px',
     }}>
         <Input
-        placeholder='מי היורה'
+        placeholder='מי הדוקר'
         style={{
             textAlign: 'right',
         }}

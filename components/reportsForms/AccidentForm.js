@@ -3,7 +3,7 @@ import { Divider, Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
 
-export default function ShootingForm() {
+export default function AccidentForm() {
 
   return (
     <Divider
@@ -11,13 +11,13 @@ export default function ShootingForm() {
       borderBottomWidth: '0px',
     }}>
         <Input
-        placeholder='מי היורה'
+        placeholder='מי הפוגע'
         style={{
             textAlign: 'right',
         }}
         />
         <Input
-        placeholder='סוג נשק'
+        placeholder='מי הנפגע'
         style={{
             textAlign: 'right',
         }}
