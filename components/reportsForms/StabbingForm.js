@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider, Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { Text } from 'react-native';
 
 export default function StabbingForm() {
 
@@ -28,8 +29,9 @@ export default function StabbingForm() {
         }}
         keyboardType={'numeric'}
         />
+        <Text>זמן האירוע</Text>
         <DateTimePicker
-        placeholderText='תאריך האירוע'
+        //placeholderText='תאריך האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
@@ -37,30 +39,31 @@ export default function StabbingForm() {
         mode="date"
         />
         <DateTimePicker
-        placeholderText='שעת האירוע'
+        //placeholderText='שעת האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
         value={new Date()}
         mode="time"
         />
+        <Text>זמן דיווח האירוע</Text>
         <DateTimePicker
-        placeholderText='תאריך דיווח האירוע'
+        //placeholderText='תאריך דיווח האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
         value={new Date()}
         mode="date"
-        disabled
+        disabled={true}
         />
         <DateTimePicker
-        placeholderText='שעת דיווח האירוע'
+        //placeholderText='שעת דיווח האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
         value={new Date()}
         mode="time"
-        disabled
+        disabled={true}
         />
         <Input
         placeholder='מי דיווח'
@@ -68,6 +71,7 @@ export default function StabbingForm() {
         style={{
             textAlign: 'right',
         }}
+        disabled
         />
     </Divider>
   );

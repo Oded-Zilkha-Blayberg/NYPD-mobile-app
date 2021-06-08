@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ShootingForm from '../components/reportsForms/ShootingForm.js';
 import StabbingForm from '../components/reportsForms/StabbingForm.js';
 import KidnapForm from '../components/reportsForms/KidnapForm.js';
@@ -7,12 +7,17 @@ import { Chip, Divider } from 'react-native-elements';
 import { StyleSheet } from 'react-native';
 
 export default function NewReport() {
-  let formToShow = "";
+const [flag,setFlag]=useState(0);
 
+
+  
   return (
     <Divider
     style={{
       borderBottomWidth: '0px',
+      // position:"absolute",
+      // top: 0,
+      // flexDirection: "row",
     }}>
         <Divider
         style={{
@@ -28,7 +33,7 @@ export default function NewReport() {
             backgroundColor: '#ef5350',
             marginHorizontal: '5%',
           }}
-          onPress={formToShow = "shooting"}
+          onPress={() => {setFlag(1)}}
           />
           
           <Chip
@@ -37,7 +42,7 @@ export default function NewReport() {
             backgroundColor: '#ffa726',
             marginHorizontal: '5%',
           }}
-          onPress={formToShow = "stabbing"}
+          onPress={() => {setFlag(2)}}
           />
 
           <Chip
@@ -46,7 +51,7 @@ export default function NewReport() {
             backgroundColor: '#fdd835',
             marginHorizontal: '5%',
           }}
-          onPress={formToShow = "kidnap"}
+          onPress={() => {setFlag(3)}}
           />
 
           <Chip
@@ -55,11 +60,26 @@ export default function NewReport() {
             backgroundColor: '#26a69a',
             marginHorizontal: '5%',
           }}
-          onPress={formToShow = "accident"}
+          onPress={() => {setFlag(4)}}
           />
+       
         </Divider>
-
-        <ShootingForm></ShootingForm>
+       {
+         flag==1 ?
+        <ShootingForm ></ShootingForm>
+        : 
+        flag==2 ?
+        <StabbingForm></StabbingForm>
+      :
+      flag ==3 ? 
+      <KidnapForm></KidnapForm>
+      :
+      flag==4 ?
+      <AccidentForm></AccidentForm>
+      :
+      null
+      
+      }
     </Divider>
   );
 }
