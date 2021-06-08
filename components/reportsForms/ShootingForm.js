@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Input } from 'react-native-elements';
+import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
 
@@ -15,12 +15,14 @@ export default function ShootingForm() {
         style={{
             textAlign: 'right',
         }}
+        // onChangeText={text => updateAttacker(text)}
         />
         <Input
         placeholder='סוג נשק'
         style={{
             textAlign: 'right',
         }}
+        // onChangeText={text => updateWeapon(text)}
         />
         <Input
         placeholder='מספר נפגעים'
@@ -28,6 +30,7 @@ export default function ShootingForm() {
             textAlign: 'right',
         }}
         keyboardType={'numeric'}
+        // onChangeText={text => updateNumber(text)}
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
@@ -73,6 +76,9 @@ export default function ShootingForm() {
         }}
         disabled
         />
+
+        <Button title="Send" onPress={() => {alert(1)}} >
+        </Button>
     </Divider>
   );
 }

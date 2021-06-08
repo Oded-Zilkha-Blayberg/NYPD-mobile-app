@@ -1,7 +1,8 @@
 import React from 'react';
-import { Divider, Input } from 'react-native-elements';
+import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
+// import console = require('console');
 
 export default function AccidentForm() {
 
@@ -15,12 +16,14 @@ export default function AccidentForm() {
         style={{
             textAlign: 'right',
         }}
+        onChangeText={text => updateAttacker(text)}
         />
         <Input
         placeholder='מי הנפגע'
         style={{
             textAlign: 'right',
         }}
+        onChangeText={text => updateInjured(text)}
         />
         <Input
         placeholder='מספר נפגעים'
@@ -28,6 +31,7 @@ export default function AccidentForm() {
             textAlign: 'right',
         }}
         keyboardType={'numeric'}
+        onChangeText={text => updateNumber(text)}
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
@@ -67,12 +71,68 @@ export default function AccidentForm() {
         />
         <Input
         placeholder='מי דיווח'
-        value="{שם השוטר המחובר}"
+        // value="{שם השוטר המחובר}"
         style={{
             textAlign: 'right',
         }}
-        disabled
+        onChangeText={text => updateReporter(text)}
+        // disabled
         />
+
+        <Button title="Send" onPress={() => {buildReport()}} >
+        </Button>
     </Divider>
   );
+
+  let attacker = "";
+  let injured = "";
+  let injuredNumber = "";
+  let reporter = ""; 
+
+function updateAttacker(text)  {
+  attacker = text
+};
+function updateInjured(text)  {
+  injured = text
+};
+
+function updateNumber(text)  {
+  injuredNumber = text
+};
+
+function updateReporter(text)  {
+  reporter = text
+};
+
+function buildReport()  {
+  let report = {
+    'criminal': attacker,
+    'casualties': injured,
+    'number_of_casualties': injuredNumber,
+    'event_time': "11-20-2021",
+    'report_time': "09-15-2021",
+    'user_name': reporter,
+    'lat': 41,
+    'lon': -73,
+    'event_type': 4,
+    'event_name':"try"
+  };
+
+  console.log(report);
+  sendReportToServer({report});
+};
+
+async function sendReportToServer(report) {
+
+  const response = await fetch(`http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports`, {
+    method: 'POST', 
+    // mode: 'no-cors', 
+    headers: {'Content-Type': 'application/json'},
+    
+    body: JSON.stringify(report) 
+    // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+};
+
 }

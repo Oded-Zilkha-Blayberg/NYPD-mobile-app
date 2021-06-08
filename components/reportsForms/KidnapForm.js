@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Input } from 'react-native-elements';
+import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
 
@@ -15,18 +15,21 @@ export default function KidnapForm() {
         style={{
             textAlign: 'right',
         }}
+        onChangeText={text => updateAttacker(text)}
         />
         <Input
         placeholder='מי הנחטף'
         style={{
             textAlign: 'right',
         }}
+        onChangeText={text => updateInjured(text)}
         />
         <Input
         placeholder='מיקום אחרון ידוע'
         style={{
             textAlign: 'right',
         }}
+        onChangeText={text => updatePlace(text)}
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
@@ -66,12 +69,66 @@ export default function KidnapForm() {
         />
         <Input
         placeholder='מי דיווח'
-        value="{שם השוטר המחובר}"
+        // value="{שם השוטר המחובר}"
         style={{
             textAlign: 'right',
         }}
-        disabled
+        onChangeText={text => updateReporter(text)}
+
+        // disabled
         />
+
+        <Button title="Send" onPress={() => {buildReport()}} >
+        </Button>
+
     </Divider>
   );
+
+  let attacker = "";
+  let injured = "";
+  let place = "";
+  let reporter = "f"; 
+
+function updateAttacker(text)  {
+  attacker = text
+};
+function updateInjured(text)  {
+  injured = text
+};
+
+function updatePlace(text)  {
+  place = text
+};
+
+function updateReporter(text)  {
+  reporter = "f"
+};
+
+function buildReport()  {
+  let report = {
+    'criminal': attacker,
+    'casualties': injured,
+    'number_of_casualties': place,
+    'event_time': "11-20-2021",
+    'report_time': "09-15-2021",
+    'user_name': reporter,
+    'lat': 41,
+    'lon': -73,
+    'event_type': 4,
+    'event_name':"try"
+  };
+
+  console.log(report);
+  sendReportToServer({report});
+};
+
+async function sendReportToServer(report) {
+  const response = await fetch(`http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports`, {
+    method: 'POST', 
+    mode: 'no-cors', 
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(report) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
 }

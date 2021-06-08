@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Input } from 'react-native-elements';
+import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
 
@@ -73,6 +73,10 @@ export default function StabbingForm() {
         }}
         disabled
         />
+
+        <Button title="Send" onPress={() => {alert(1)}} >
+        </Button>
+
     </Divider>
   );
 }
