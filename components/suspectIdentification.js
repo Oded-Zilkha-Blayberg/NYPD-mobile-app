@@ -56,6 +56,14 @@ let isSuspected = false
 // turn into a prop of the component
 
 
+// API
+
+//base api : http://intelligence-api-git-2-intelapp1.apps.openforce.openforce.biz/
+// id for true or false
+// api : http://intelligence-api-git-2-intelapp1.apps.openforce.openforce.biz/api/suspects/suspected/{ID}
+// api for finding info by id
+// api : http://intelligence-api-git-2-intelapp1.apps.openforce.openforce.biz/api/persons/{ID}
+
 const styles = StyleSheet.create({
   activeIcon: {
     
