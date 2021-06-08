@@ -2,7 +2,7 @@ import React from 'react';
 import { Divider, Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function ShootingForm() {
+export default function KidnapForm() {
 
   return (
     <Divider
@@ -10,23 +10,22 @@ export default function ShootingForm() {
       borderBottomWidth: '0px',
     }}>
         <Input
-        placeholder='מי היורה'
+        placeholder='מי החוטף'
         style={{
             textAlign: 'right',
         }}
         />
         <Input
-        placeholder='סוג נשק'
+        placeholder='מי הנחטף'
         style={{
             textAlign: 'right',
         }}
         />
         <Input
-        placeholder='מספר נפגעים'
+        placeholder='מיקום אחרון ידוע'
         style={{
             textAlign: 'right',
         }}
-        keyboardType={'numeric'}
         />
         <DateTimePicker
         placeholderText='תאריך האירוע'
@@ -68,7 +67,6 @@ export default function ShootingForm() {
         style={{
             textAlign: 'right',
         }}
-        disabled
         />
     </Divider>
   );

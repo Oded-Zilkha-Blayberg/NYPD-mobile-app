@@ -25,7 +25,7 @@ export default function App() {
           {/* <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> */}
 
         <Basepage title="יצירת דיווח" icon="info">
-          <SuspectCard />
+          <NewReport />
         </Basepage>
         <StatusBar style="auto" />
       </View>
