@@ -14,20 +14,28 @@ const styles = StyleSheet.create({
         // resizeMode: "cover",
         justifyContent: "flex-end",
         height: 500,
-        width: 375
-    }
+        width: 375,
+    },
+    inputs: {
+        bottom: 120,
+        borderBottomColor: "transparent"
+    },
 });
 
 export default function Login(props) {
     return (
         <React.Fragment>
-            <ImageBackground source={require('../assets/login_screen_bg.JPG')} style={styles.backgroundImage}>
+            <ImageBackground source={require('../assets/image.jpg')} style={styles.backgroundImage}>
                 
-                <Input placeholder='שם משתמש' dir='rtl' rightIcon={
-                    <Icon name='account_circle' />
+                <Divider style={styles.inputs}>
+
+                
+                <Input placeholder='שם משתמש' writingDirection='rtl' rightIcon={
+                    <Icon name='person' />
                 }></Input>
-                <Input placeholder='סיסמה' dir='rtl' rightIcon={{ type: 'material', name: 'vpn_key' }}></Input>
-                <FAB color="#040848" title='התחבר'></FAB>
+                <Input placeholder='סיסמה' writingDirection='rtl' rightIcon={{ type: 'material', name: 'lock' }}></Input>
+                <FAB color="#040848" title='התחבר' ></FAB>
+                </Divider>
             </ImageBackground>
             
         </React.Fragment>
