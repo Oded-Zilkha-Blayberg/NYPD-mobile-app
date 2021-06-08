@@ -7,6 +7,8 @@ import IdentifyScreen from './views/IdentifyScreen';
 import MapScreen from "./views/MapScreen";
 import NewReportScreen from "./views/NewReportScreen";
 import { StyleSheet, Text, View } from 'react-native';
+import LoginPage from "./components/LoginPage";
+
 
 
 
@@ -33,6 +35,7 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   </SafeAreaProvider>
+
 
   );
 }
