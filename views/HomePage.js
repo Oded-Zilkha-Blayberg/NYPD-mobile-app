@@ -11,6 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Home from '../components/Home'
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -25,16 +26,11 @@ const styles = StyleSheet.create({
     },
   });
 
-  export default function IdentifyScreen ({ navigation }) {
+  export default function HomePage ({ navigation }) {
     return (
         <StylesProvider jss={jss}>
-          <View style={styles.container}>
-
-              {/* <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> */}
-
-            <Basepage title="זיהוי חשוד" icon="block" navigation={navigation}>
-              <SuspectCard />
-            </Basepage>
+          <View style={styles.container}>            
+            <Home navigation={navigation}></Home>
             <StatusBar style="auto" />
           </View>
       </StylesProvider>

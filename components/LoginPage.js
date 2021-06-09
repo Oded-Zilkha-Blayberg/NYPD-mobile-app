@@ -6,6 +6,7 @@ import { StyleSheet, View, ImageBackground } from 'react-native';
 // import "@fontsource/heebo";
 
 const loginAPI = 'http://siton-backend-securityapp3.apps.openforce.openforce.biz';
+const SSEChannel = 'http://siton-backend-securityapp3.apps.openforce.openforce.biz/users/stayConnected'
 
 
 const styles = StyleSheet.create({
@@ -70,12 +71,18 @@ async function attemptLogin() {
 
         return response.json();
     })
-    .then((json) => {
+    .then(async (json) => {
         //this will return the authentication token, and we will need to save it and go to the main page
         // save username while using program
 
+        await fetch(`${SSEChannel}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        });
+
         global.user = json.user.user_name;
-        navigation.navigate('identification') //
+        global.userPicture = json.user.photo;
+        navigation.navigate('home') //
 
     })
     .catch((error) => {
