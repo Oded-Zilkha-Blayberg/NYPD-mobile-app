@@ -3,6 +3,7 @@ import ShootingForm from './reportsForms/ShootingForm.js';
 import StabbingForm from './reportsForms/StabbingForm.js';
 import KidnapForm from './reportsForms/KidnapForm.js';
 import AccidentForm from './reportsForms/AccidentForm';
+import QuarantineForm from './reportsForms/QuarantineForm';
 import { Chip, Divider } from 'react-native-elements';
 import { StyleSheet } from 'react-native';
 
@@ -13,7 +14,7 @@ const [flag,setFlag]=useState(0);
     <Divider
     style={{
       borderBottomWidth: '0px',
-      top: 140
+      top: 180
     }}>
         <Divider
         style={{
@@ -49,17 +50,37 @@ const [flag,setFlag]=useState(0);
           }}
           onPress={() => {setFlag(3)}}
           />
+          </Divider>
 
-          <Chip
-          title="תאונה"
-          buttonStyle={{
-            backgroundColor: '#26a69a',
-            marginHorizontal: '5%',
-          }}
-          onPress={() => {setFlag(4)}}
-          />
+          <Divider style={{
+          borderBottomWidth: '0px',
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginBottom: '3%',
+          justifyContent: 'center',
+        }}>
+            <Chip
+            title="תאונה"
+            buttonStyle={{
+              backgroundColor: '#26a69a',
+              marginHorizontal: '5%',
+            }}
+            onPress={() => {setFlag(4)}}
+            />
+
+            <Chip
+            title="הפרת בידוד"
+            buttonStyle={{
+              backgroundColor: '#5ebd60',
+              marginHorizontal: '5%',
+            }}
+            onPress={() => {setFlag(5)}}
+            />
+          </Divider>
+
+          
        
-        </Divider>
+        
        {
          flag==1 ?
         <ShootingForm ></ShootingForm>
@@ -72,6 +93,9 @@ const [flag,setFlag]=useState(0);
       :
       flag==4 ?
       <AccidentForm></AccidentForm>
+      :
+      flag==5 ?
+      <QuarantineForm style={styles.form}></QuarantineForm>
       :
       null
       
@@ -87,4 +111,7 @@ const styles = StyleSheet.create({
   hide: {
     display: 'none',
   },
+  form: {
+    margin: '30px'
+  }
 });

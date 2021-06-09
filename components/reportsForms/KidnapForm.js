@@ -60,7 +60,9 @@ export default function KidnapForm() {
         }}
         onChangeText={text => updatePlace(text)}
         />
-        <Text>זמן האירוע</Text>
+        <Text style={{
+            textAlign: 'right',
+        }}>זמן האירוע</Text>
         <DateTimePicker
         testID="dateTimePicker"
         is24Hour={true}
@@ -70,7 +72,9 @@ export default function KidnapForm() {
         mode="datetime"
         />
         
-        <Text>איזור האירוע</Text>
+        <Text style={{
+            textAlign: 'right',
+        }}>איזור האירוע</Text>
          <Picker
             style={{ height: 150}}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
@@ -82,9 +86,10 @@ export default function KidnapForm() {
         </Picker>
 
     </Divider>
-    </ScrollView>
+    
     <Button title="Send" onPress={() => {buildKidnapReport()}} >
         </Button>
+        </ScrollView>
     </SafeAreaView>
   );
 
