@@ -64,7 +64,9 @@ export default function AccidentForm() {
         keyboardType={'numeric'}
         onChangeText={text => updateNumber(text)}
         />
-        <Text>זמן האירוע</Text>
+        <Text style={{
+            textAlign: 'right',
+        }}>זמן האירוע</Text>
         <DateTimePicker
         testID="dateTimePicker"
         is24Hour={true}
@@ -74,7 +76,9 @@ export default function AccidentForm() {
         mode="datetime"       
         />
         
-        <Text>איזור האירוע</Text>
+        <Text style={{
+            textAlign: 'right',
+        }}>איזור האירוע</Text>
          <Picker 
             style={{ height: 150}}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
@@ -86,9 +90,10 @@ export default function AccidentForm() {
         </Picker>
   
     </Divider>
-    </ScrollView>
+    
     <Button title="Send" onPress={() => {buildAccidentReport()}} >
     </Button>
+    </ScrollView>
     </SafeAreaView>
   );
 
