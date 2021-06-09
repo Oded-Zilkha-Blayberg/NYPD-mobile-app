@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from "./Navbar";
 import { StyleSheet, View, Text, ImageBackground} from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Divider, Card } from 'react-native-elements';
+import { Divider, Card, Avatar  } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -90,15 +90,8 @@ export default function Home({navigation}) {
                 style={styles.titleContainer}>
                 <Text style={styles.username}>{global.user}</Text>
                 <Text style={styles.title}>בוקר טוב, </Text>
-                <ImageBackground source={global.userPicture} />
+                <Avatar source={{uri: global.userPicture}} />
             </LinearGradient>
-            
-            {/* <Divider style={styles.titleContainer}>
-                {/* <Icon name="notifications" iconStyle={styles.title}/> 
-                <Text style={styles.username}>{global.user}</Text>
-                <Text style={styles.title}>בוקר טוב, </Text>               
-            </Divider> 
-            */}
 
             <View>
                 <Divider style={styles.firstRow}>
@@ -129,7 +122,7 @@ export default function Home({navigation}) {
                         </Card>
                     </TouchableOpacity>
                 </Divider>
-                <Text >נוצר באהבה על ידי ולדימיר המלך, ענבר, עודד ומיכאל</Text>
+                <Text style={styles.subtitle}>נוצר באהבה על ידי ולדימיר המלך, ענבר, עודד ומיכאל</Text>
             </View>
 
             <Navbar navigation = {navigation}></Navbar>

@@ -11,6 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Reports from "../components/Reports";
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -30,7 +31,8 @@ const styles = StyleSheet.create({
         <StylesProvider jss={jss}>
           <View style={styles.container}>
             <Basepage title="דיווחים " icon="warning" navigation={navigation}>
-              <Text> this is reports page</Text> 
+
+              <Reports />
             </Basepage>
             <StatusBar style="auto" />
           </View>
