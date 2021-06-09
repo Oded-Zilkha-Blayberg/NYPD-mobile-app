@@ -3,6 +3,7 @@ import ShootingForm from './reportsForms/ShootingForm.js';
 import StabbingForm from './reportsForms/StabbingForm.js';
 import KidnapForm from './reportsForms/KidnapForm.js';
 import AccidentForm from './reportsForms/AccidentForm';
+import QuarantineForm from './reportsForms/QuarantineForm';
 import { Chip, Divider } from 'react-native-elements';
 import { StyleSheet } from 'react-native';
 
@@ -58,6 +59,15 @@ const [flag,setFlag]=useState(0);
           }}
           onPress={() => {setFlag(4)}}
           />
+
+          <Chip
+          title="הפרת בידוד"
+          buttonStyle={{
+            backgroundColor: '#5ebd60',
+            marginHorizontal: '5%',
+          }}
+          onPress={() => {setFlag(5)}}
+          />
        
         </Divider>
        {
@@ -72,6 +82,9 @@ const [flag,setFlag]=useState(0);
       :
       flag==4 ?
       <AccidentForm></AccidentForm>
+      :
+      flag==5 ?
+      <QuarantineForm></QuarantineForm>
       :
       null
       
