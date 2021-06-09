@@ -134,7 +134,7 @@ async function buildStabbingReport()  {
     'weapon_type': weapon,
     'event_time': time,
     'report_time': new Date(),
-    'user_name': "גלי גרשטיין",
+    'user_name': global.user,
     'lat': currLocation.coords.latitude,
     'lon': currLocation.coords.longitude,
     'region': region,

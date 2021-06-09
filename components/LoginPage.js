@@ -75,7 +75,8 @@ async function attemptLogin() {
         // save username while using program
 
         global.user = json.user.user_name;
-        navigation.navigate('identification') //
+        global.userPicture = json.user.photo;
+        navigation.navigate('home') //
 
     })
     .catch((error) => {

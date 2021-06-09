@@ -19,7 +19,7 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#f6f6f6',
       alignItems: 'center',
       justifyContent: 'center',
       writingDirection: 'ltr',

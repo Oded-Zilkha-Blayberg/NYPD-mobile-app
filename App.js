@@ -21,9 +21,9 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
-            {/* <Stack.Screen 
+            <Stack.Screen 
               name="login" 
-              component={LoginScreen} /> */}
+              component={LoginScreen} />
             <Stack.Screen
               name="identification"
               component={IdentifyScreen} />
