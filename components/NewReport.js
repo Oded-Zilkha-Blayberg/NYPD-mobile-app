@@ -13,9 +13,7 @@ const [flag,setFlag]=useState(0);
     <Divider
     style={{
       borderBottomWidth: '0px',
-      // position:"absolute",
-      // top: 0,
-      // flexDirection: "row",
+      top: 140
     }}>
         <Divider
         style={{

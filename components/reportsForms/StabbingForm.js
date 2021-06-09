@@ -1,78 +1,148 @@
-import React from 'react';
-import { Divider, Input } from 'react-native-elements';
+import React, { useState, useEffect } from 'react';
+import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text } from 'react-native';
+import sendReportToServer from "./utils";
+import { Platform, Text, View, StyleSheet, Picker, ScrollView , SafeAreaView } from 'react-native';
+import * as Location from 'expo-location';
 
 export default function StabbingForm() {
 
+  
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+  
+
   return (
-    <Divider
-    style={{
-      borderBottomWidth: '0px',
-    }}>
-        <Input
-        placeholder='מי הדוקר'
-        style={{
-            textAlign: 'right',
-        }}
-        />
-        <Input
-        placeholder='סוג נשק'
-        style={{
-            textAlign: 'right',
-        }}
-        />
-        <Input
-        placeholder='מספר נפגעים'
-        style={{
-            textAlign: 'right',
-        }}
-        keyboardType={'numeric'}
-        />
-        <Text>זמן האירוע</Text>
-        <DateTimePicker
-        //placeholderText='תאריך האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="date"
-        />
-        <DateTimePicker
-        //placeholderText='שעת האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        />
-        <Text>זמן דיווח האירוע</Text>
-        <DateTimePicker
-        //placeholderText='תאריך דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="date"
-        disabled={true}
-        />
-        <DateTimePicker
-        //placeholderText='שעת דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        disabled={true}
-        />
-        <Input
-        placeholder='מי דיווח'
-        value="{שם השוטר המחובר}"
-        style={{
-            textAlign: 'right',
-        }}
-        disabled
-        />
-    </Divider>
+    <SafeAreaView>
+      <ScrollView>
+      <Divider
+      style={{
+        borderBottomWidth: '0px',
+      
+      }}>
+          <Input
+          placeholder='מי הדוקר'
+          style={{
+              textAlign: 'right',
+          }}
+          onChangeText={text => updateAttacker(text)}
+
+          />
+          <Input
+          placeholder='סוג נשק'
+          style={{
+              textAlign: 'right',
+          }}
+          onChangeText={text => updateWeapon(text)}
+
+          />
+          <Input
+          placeholder=' נפגעים'
+          style={{
+              textAlign: 'right',
+          }}
+          onChangeText={text => updateCasualties(text)}
+
+          />
+          <Text>זמן האירוע</Text>
+          <DateTimePicker
+          testID="dateTimePicker"
+          is24Hour={true}
+          display="default"
+          onChange={(event, selectedDate) => updateTime(event, selectedDate)}
+          value={new Date()}
+          mode="datetime"
+          />
+          
+          <Text>איזור האירוע</Text>
+          <Picker
+              style={{ height: 150}}
+              onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+              <Picker.Item label="ברונקס" value="ברונקס" />
+              <Picker.Item label="מנהטן" value="מנהטן" />
+              <Picker.Item label="ברוקלין" value="ברוקלין" />
+              <Picker.Item label="קווינס" value="קווינס" />
+              <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
+          </Picker>
+
+      </Divider>
+    </ScrollView>
+    <Button title="Send" onPress={() => {buildStabbingReport()}} >
+        </Button>
+    </SafeAreaView>
   );
+
+
+  let attacker = "";
+  let weapon = "";
+  let casualties = "";
+  let reporter = "גלי גרשטיין"; 
+  let region = "";
+  let time ="";
+
+function updateAttacker(text)  {
+  attacker = text
+};
+function updateWeapon(text)  {
+  weapon = text
+};
+
+function updateCasualties(text)  {
+  casualties = text
+};
+
+function updateReporter(text)  {
+  reporter = text
+};
+
+function updateTime (event, selectedDate) {
+  time = selectedDate;
+};
+
+function setSelectedValue(text)  {
+  region = text
+};
+
+
+async function buildStabbingReport()  {
+  const currLocation = await Location.getLastKnownPositionAsync();
+
+  let report = {
+    'criminal': attacker,
+    'casualties': casualties,
+    'weapon_type': weapon,
+    'event_time': time,
+    'report_time': new Date(),
+    'user_name': "גלי גרשטיין",
+    'lat': currLocation.coords.latitude,
+    'lon': currLocation.coords.longitude,
+    'region': region,
+    'event_type': 2,
+    'event_name':"דקירה"
+  };
+
+  sendReportToServer({report});
+  alert("דיווח נשלח בהצלחה!");
+};
 }

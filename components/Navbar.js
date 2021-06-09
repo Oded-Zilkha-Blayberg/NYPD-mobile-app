@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position:"absolute",
     width: "100%",
-    padding: 20,
+    padding: 15,
     backgroundColor:'#f8f9fb',
     bottom: 0,
   },
@@ -42,8 +42,9 @@ export default function Navbar({navigation}) {
   return (
     <React.Fragment>
         <Divider style={styles.appBar}>
-            <Icon name='home' iconStyle={styles.navIcon} />
-            <Icon name='search' iconStyle={styles.navIcon} 
+            <Icon name='home' iconStyle={styles.navIcon} 
+            onPress={() => navigation.navigate('login')}/>
+            <Icon name='search' iconStyle={styles.navIcon}  
             onPress={() => navigation.navigate('identification')} />
             <FAB icon={{ name: "add", color: "white"}}
                 color="#040848" 
@@ -55,24 +56,6 @@ export default function Navbar({navigation}) {
             <Icon name='announcement' iconStyle={styles.navIcon} />
         </Divider>
 
-        {/* <AppBar position="fixed" className={classes.appBar}>
-            <BottomNavigation
-            // value={value}
-            // onChange={(event, newValue) => {
-            //     setValue(newValue);
-            // }}
-            showLabels
-            className={classes.root}
-            >
-                <BottomNavigationAction label="בית" icon={<HomeRoundedIcon />} />
-                <BottomNavigationAction label="זיהוי חשוד" icon={<SearchRoundedIcon />} />
-                <Fab aria-label="add" color="inherit" className={classes.fabButton}>
-                    <AddIcon />
-                </Fab>
-                <BottomNavigationAction label="מפה" icon={<MapRoundedIcon />}/>
-                <BottomNavigationAction label="דיווחים" icon={<AnnouncementRoundedIcon />}/>
-            </BottomNavigation>                   
-        </AppBar>  */}
     </React.Fragment>
   );
 }
