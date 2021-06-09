@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text } from 'react-native';
+import { Text, Picker } from 'react-native';
 // import console = require('console');
 import sendReportToServer from "./utils";
 
@@ -40,8 +40,10 @@ export default function AccidentForm() {
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
+        onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
         mode="date"
+        
         />
         <DateTimePicker
         //placeholderText='שעת האירוע'
@@ -51,25 +53,16 @@ export default function AccidentForm() {
         value={new Date()}
         mode="time"
         />
-        <Text>זמן דיווח האירוע</Text>
-        <DateTimePicker
-        //placeholderText='תאריך דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="date"
-        disabled={true}
-        />
-        <DateTimePicker
-        //placeholderText='שעת דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        disabled={true}
-        />
+        <Text>איזור האירוע</Text>
+         {/* <Picker
+            placeholder="בחר איזור"
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+            <Picker.Item label="ברונקס" value="ברונקס" />
+            <Picker.Item label="מנהטן" value="מנהטן" />
+            <Picker.Item label="ברוקלין" value="ברוקלין" />
+            <Picker.Item label="קווינס" value="קווינס" />
+            <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
+        </Picker> */}
         <Input
         placeholder='מי דיווח'
         // value="{שם השוטר המחובר}"
@@ -89,6 +82,8 @@ export default function AccidentForm() {
   let injured = "";
   let injuredNumber = "";
   let reporter = ""; 
+  let time = "";
+  let region = ""; 
 
 function updateAttacker(text)  {
   attacker = text
@@ -105,22 +100,32 @@ function updateReporter(text)  {
   reporter = text
 };
 
+function updateTime (event, selectedDate) {
+   time = selectedDate;
+};
+
+function setSelectedValue(text)  {
+  region = text
+};
+
+
 function buildAccidentReport()  {
   let report = {
     'criminal': attacker,
     'casualties': injured,
     'number_of_casualties': injuredNumber,
-    'event_time': "11-20-2021",
-    'report_time': "09-15-2021",
+    'event_time': time,
+    'report_time': new Date(),
     'user_name': reporter,
+    'region': region,
     'lat': 41,
     'lon': -73,
     'event_type': 4,
     'event_name':"accident"
   };
-
-  console.log(report);
+  
   sendReportToServer({report});
+  alert("דיווח נשלח בהצלחה!");
 };
 
 }
