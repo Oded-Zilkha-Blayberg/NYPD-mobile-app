@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import sendReportToServer from "./utils";
-import { Platform, Text, View, StyleSheet } from 'react-native';
+import { Platform, Text, View, StyleSheet, Picker, ScrollView , SafeAreaView } from 'react-native';
 import * as Location from 'expo-location';
 
 
@@ -36,6 +36,8 @@ export default function AccidentForm() {
 
 
   return (
+    <SafeAreaView>
+    <ScrollView >
     <Divider
     style={{
       borderBottomWidth: '0px',
@@ -64,59 +66,38 @@ export default function AccidentForm() {
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
-        //placeholderText='תאריך האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
+        onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
-        mode="date"
+        mode="datetime"       
         />
-        <DateTimePicker
-        //placeholderText='שעת האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        />
-        <Text>זמן דיווח האירוע</Text>
-        <DateTimePicker
-        //placeholderText='תאריך דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="date"
-        disabled={true}
-        />
-        <DateTimePicker
-        //placeholderText='שעת דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        disabled={true}
-        />
-        <Input
-        placeholder='מי דיווח'
-        // value="{שם השוטר המחובר}"
-        style={{
-            textAlign: 'right',
-        }}
-        onChangeText={text => updateReporter(text)}
-        // disabled
-        />
-
-        <Button title="Send" onPress={() => {buildAccidentReport()}} >
-        </Button>
+        
+        <Text>איזור האירוע</Text>
+         <Picker 
+            style={{ height: 150}}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+            <Picker.Item label="ברונקס" value="ברונקס" />
+            <Picker.Item label="מנהטן" value="מנהטן" />
+            <Picker.Item label="ברוקלין" value="ברוקלין" />
+            <Picker.Item label="קווינס" value="קווינס" />
+            <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
+        </Picker>
+  
     </Divider>
+    </ScrollView>
+    <Button title="Send" onPress={() => {buildAccidentReport()}} >
+    </Button>
+    </SafeAreaView>
   );
 
   let attacker = "";
   let injured = "";
   let injuredNumber = "";
   let reporter = ""; 
+  let time = "";
+  let region = ""; 
 
 function updateAttacker(text)  {
   attacker = text
@@ -133,25 +114,38 @@ function updateReporter(text)  {
   reporter = text
 };
 
+
+function updateTime (event, selectedDate) {
+  time = selectedDate;
+};
+
+function setSelectedValue(text)  {
+ region = text
+};
+
+
+
 async function buildAccidentReport()  {
 
   const currLocation = await Location.getLastKnownPositionAsync();
+
 
   let report = {
     'criminal': attacker,
     'casualties': injured,
     'number_of_casualties': injuredNumber,
-    'event_time': "11-20-2021",
-    'report_time': "09-15-2021",
+    'event_time': time,
+    'report_time': new Date(),
     'user_name': reporter,
     'lat': currLocation.coords.latitude,
     'lon': currLocation.coords.longitude,
+    'region': region,
     'event_type': 4,
-    'event_name':"accident"
+    'event_name':"תאונה"
   };
-
-  console.log(report);
+  
   sendReportToServer({report});
+  alert("דיווח נשלח בהצלחה!");
 };
 
 }

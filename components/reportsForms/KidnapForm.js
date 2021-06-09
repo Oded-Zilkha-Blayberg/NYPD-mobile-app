@@ -2,7 +2,7 @@ import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import sendReportToServer from "./utils";
-import { Platform, Text, View, StyleSheet } from 'react-native';
+import { Platform, Text, View, StyleSheet, Picker, ScrollView , SafeAreaView } from 'react-native';
 import * as Location from 'expo-location';
 
 export default function KidnapForm() {
@@ -33,9 +33,12 @@ export default function KidnapForm() {
 ///////////////////////////
 
   return (
+    <SafeAreaView>
+    <ScrollView >
     <Divider
     style={{
       borderBottomWidth: '0px',
+      height: 50
     }}>
         <Input
         placeholder='מי החוטף'
@@ -60,61 +63,38 @@ export default function KidnapForm() {
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
-        //placeholderText='תאריך האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
+        onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
-        mode="date"
+        mode="datetime"
         />
-        <DateTimePicker
-        //placeholderText='שעת האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        />
-        <Text>זמן דיווח האירוע</Text>
-        <DateTimePicker
-        //placeholderText='תאריך דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="date"
-        disabled={true}
-        />
-        <DateTimePicker
-        //placeholderText='שעת דיווח האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        disabled={true}
-        />
-        <Input
-        placeholder='מי דיווח'
-        // value="{שם השוטר המחובר}"
-        style={{
-            textAlign: 'right',
-        }}
-        onChangeText={text => updateReporter(text)}
-
-        // disabled
-        />
-
-        <Button title="Send" onPress={() => {buildKidnapReport()}} >
-        </Button>
+        
+        <Text>איזור האירוע</Text>
+         <Picker
+            placeholder="בחר איזור"
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+            <Picker.Item label="ברונקס" value="ברונקס" />
+            <Picker.Item label="מנהטן" value="מנהטן" />
+            <Picker.Item label="ברוקלין" value="ברוקלין" />
+            <Picker.Item label="קווינס" value="קווינס" />
+            <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
+        </Picker>
 
     </Divider>
+    </ScrollView>
+    <Button title="Send" onPress={() => {buildKidnapReport()}} >
+        </Button>
+    </SafeAreaView>
   );
 
   let attacker = "";
   let kidnapped = "";
   let place = "";
   let reporter = ""; 
+  let region ="";
+  let time ="";
 
 function updateAttacker(text)  {
   attacker = text
@@ -131,31 +111,30 @@ function updateReporter(text)  {
   reporter = text
 };
 
+function updateTime (event, selectedDate) {
+  time = selectedDate;
+};
+
+function setSelectedValue(text)  {
+  region = text
+};
+
 function buildKidnapReport()  {
   let report = {
     'criminal': attacker,
     'kidnapped': kidnapped,
     'last_place_known': place,
-    'event_time': "11-20-2021",
-    'report_time': "09-15-2021",
+    'event_time': time,
+    'report_time': new Date(),
     'user_name': reporter,
     'lat': currLocation.coords.latitude,
     'lon': currLocation.coords.longitude,
+    'region': region,
     'event_type': 3,
-    'event_name':"kidnap"
+    'event_name':"חטיפה"
   };
 
-  console.log(report);
   sendReportToServer({report});
+  alert("דיווח נשלח בהצלחה!");
 };
-
-// async function sendReportToServer(report) {
-//   const response = await fetch(`http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports`, {
-//     method: 'POST', 
-//     // mode: 'no-cors', 
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify(report) // body data type must match "Content-Type" header
-//   });
-//   return response.json(); // parses JSON response into native JavaScript objects
-// };
 }
