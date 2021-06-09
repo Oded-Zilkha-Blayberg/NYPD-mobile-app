@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
               {/* <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> */}
 
-              <LoginPage />
+              <LoginPage navigation={navigation}/>
             <StatusBar style="auto" />
           </View>
       </StylesProvider>

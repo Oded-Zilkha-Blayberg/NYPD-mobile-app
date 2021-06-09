@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import { Icon, Input, FAB, Text, Image } from 'react-native-elements';
 import { Divider } from 'react-native-elements';
 import { StyleSheet, View, ImageBackground } from 'react-native';
-
 // import "@fontsource/heebo";
 
 const loginAPI = 'http://siton-backend-securityapp3.apps.openforce.openforce.biz';
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function Login(props) {
+export default function Login({navigation}) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -45,18 +44,20 @@ export default function Login(props) {
             
         </React.Fragment>
     );
-}
+
 
 const userNotFound = 404;
 const incorrectPassword = 403;
 
 async function attemptLogin() {
-    fetch(`${loginAPI}/users/`, {
+    fetch(`${loginAPI}/users/login`, {
         method: 'POST',
-        body: {
-            userName: userName,
-            password: password
-        }
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({
+            "userName": userName,
+            "password": password
+        })
+        
     })
     .then((response) => {
         if(!response.ok) {
@@ -71,8 +72,14 @@ async function attemptLogin() {
     })
     .then((json) => {
         //this will return the authentication token, and we will need to save it and go to the main page
+        // save username while using program
+
+        global.user = json.user.user_name;
+        navigation.navigate('identification') //
+
     })
     .catch((error) => {
         alert(error);
     });
+}
 }

@@ -5,6 +5,7 @@ import { Text } from 'react-native';
 // import console = require('console');
 import sendReportToServer from "./utils";
 
+
 export default function AccidentForm() {
 
   return (
