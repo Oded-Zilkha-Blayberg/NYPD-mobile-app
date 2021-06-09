@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         width: 375,
     },
     inputs: {
-        bottom: 120,
+        bottom: 170,
         borderBottomColor: "transparent"
     },
 });

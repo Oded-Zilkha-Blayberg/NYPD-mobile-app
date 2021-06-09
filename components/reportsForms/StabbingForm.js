@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import sendReportToServer from "./utils";
