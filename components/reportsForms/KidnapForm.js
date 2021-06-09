@@ -2,6 +2,7 @@ import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
+import sendReportToServer from "./utils";
 
 export default function KidnapForm() {
 
@@ -22,7 +23,7 @@ export default function KidnapForm() {
         style={{
             textAlign: 'right',
         }}
-        onChangeText={text => updateInjured(text)}
+        onChangeText={text => updateKidnapped(text)}
         />
         <Input
         placeholder='מיקום אחרון ידוע'
@@ -78,22 +79,22 @@ export default function KidnapForm() {
         // disabled
         />
 
-        <Button title="Send" onPress={() => {buildReport()}} >
+        <Button title="Send" onPress={() => {buildKidnapReport()}} >
         </Button>
 
     </Divider>
   );
 
   let attacker = "";
-  let injured = "";
+  let kidnapped = "";
   let place = "";
-  let reporter = "f"; 
+  let reporter = ""; 
 
 function updateAttacker(text)  {
   attacker = text
 };
-function updateInjured(text)  {
-  injured = text
+function updateKidnapped(text)  {
+  kidnapped = text
 };
 
 function updatePlace(text)  {
@@ -101,34 +102,34 @@ function updatePlace(text)  {
 };
 
 function updateReporter(text)  {
-  reporter = "f"
+  reporter = text
 };
 
-function buildReport()  {
+function buildKidnapReport()  {
   let report = {
     'criminal': attacker,
-    'casualties': injured,
-    'number_of_casualties': place,
+    'kidnapped': kidnapped,
+    'last_place_known': place,
     'event_time': "11-20-2021",
     'report_time': "09-15-2021",
     'user_name': reporter,
     'lat': 41,
     'lon': -73,
-    'event_type': 4,
-    'event_name':"try"
+    'event_type': 3,
+    'event_name':"kidnap"
   };
 
   console.log(report);
   sendReportToServer({report});
 };
 
-async function sendReportToServer(report) {
-  const response = await fetch(`http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports`, {
-    method: 'POST', 
-    mode: 'no-cors', 
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(report) // body data type must match "Content-Type" header
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
+// async function sendReportToServer(report) {
+//   const response = await fetch(`http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports`, {
+//     method: 'POST', 
+//     // mode: 'no-cors', 
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify(report) // body data type must match "Content-Type" header
+//   });
+//   return response.json(); // parses JSON response into native JavaScript objects
+// };
 }

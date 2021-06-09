@@ -3,6 +3,7 @@ import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
 // import console = require('console');
+import sendReportToServer from "./utils";
 
 export default function AccidentForm() {
 
@@ -79,7 +80,7 @@ export default function AccidentForm() {
         // disabled
         />
 
-        <Button title="Send" onPress={() => {buildReport()}} >
+        <Button title="Send" onPress={() => {buildAccidentReport()}} >
         </Button>
     </Divider>
   );
@@ -104,7 +105,7 @@ function updateReporter(text)  {
   reporter = text
 };
 
-function buildReport()  {
+function buildAccidentReport()  {
   let report = {
     'criminal': attacker,
     'casualties': injured,
@@ -115,24 +116,11 @@ function buildReport()  {
     'lat': 41,
     'lon': -73,
     'event_type': 4,
-    'event_name':"try"
+    'event_name':"accident"
   };
 
   console.log(report);
   sendReportToServer({report});
-};
-
-async function sendReportToServer(report) {
-
-  const response = await fetch(`http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports`, {
-    method: 'POST', 
-    // mode: 'no-cors', 
-    headers: {'Content-Type': 'application/json'},
-    
-    body: JSON.stringify(report) 
-    // body data type must match "Content-Type" header
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
 };
 
 }
