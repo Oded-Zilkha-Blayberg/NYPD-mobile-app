@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text, Picker, ScrollView , SafeAreaView} from 'react-native';
 import sendReportToServer from "./utils";
+import { Platform, Text, View, StyleSheet, Picker, ScrollView , SafeAreaView } from 'react-native';
+import * as Location from 'expo-location';
+
+
+
 
 export default function AccidentForm() {
+
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
 
   return (
     <SafeAreaView>
@@ -85,16 +114,22 @@ function updateReporter(text)  {
   reporter = text
 };
 
+
 function updateTime (event, selectedDate) {
-   time = selectedDate;
+  time = selectedDate;
 };
 
 function setSelectedValue(text)  {
-  region = text
+ region = text
 };
 
 
-function buildAccidentReport()  {
+
+async function buildAccidentReport()  {
+
+  const currLocation = await Location.getLastKnownPositionAsync();
+
+
   let report = {
     'criminal': attacker,
     'casualties': injured,
@@ -102,9 +137,9 @@ function buildAccidentReport()  {
     'event_time': time,
     'report_time': new Date(),
     'user_name': reporter,
+    'lat': currLocation.coords.latitude,
+    'lon': currLocation.coords.longitude,
     'region': region,
-    'lat': 41,
-    'lon': -73,
     'event_type': 4,
     'event_name':"תאונה"
   };

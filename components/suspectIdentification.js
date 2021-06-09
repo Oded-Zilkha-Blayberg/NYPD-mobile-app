@@ -22,7 +22,7 @@ export default function suspectIdentification()  {
   return (
     
     // <View className={classes.container}>
-    <View>
+    <View style={{ width: 270 }}>
 
 
 <Input
@@ -33,6 +33,8 @@ export default function suspectIdentification()  {
   onChangeText={text => updateQuery(text)}
 />
 
+{
+  (isSuspected != 1)&&
     <Card id='personCard' style={styles.card}>
       
 
@@ -41,8 +43,8 @@ export default function suspectIdentification()  {
 
      <Card.Divider />
 
-       <Icon name="check" style={ isSuspected == 2 ? styles.activeIcon : styles.disabledIcon } color='green' size='180px' disabled='false' disabledStyle={{  backgroundColor: 'white' }}></Icon>
-       <Icon name="close" style={ isSuspected == 3 ? styles.activeIcon : styles.disabledIcon } color='red' size='180px' disabled='true' disabledStyle={{  backgroundColor: 'white' }}></Icon>
+       <Icon name="check" style={ isSuspected == 2 ? styles.activeIcon : styles.disabledIcon } color='green'  disabled='false' disabledStyle={{  backgroundColor: 'white' }}></Icon>
+       <Icon name="close" style={ isSuspected == 3 ? styles.activeIcon : styles.disabledIcon } color='red' disabled='true' disabledStyle={{  backgroundColor: 'white' }}></Icon>
       
        
     
@@ -51,15 +53,14 @@ export default function suspectIdentification()  {
 
      </Card>
 
+}
+
     </View>
   );
 
 
 
 let currQuery = ""
-
-// turn into a prop of the component
-
 
 // API
 
@@ -78,16 +79,17 @@ function updateQuery(text)  {
 
 async function searchForSuspect() {
 
+  
   checkIfSubmit();
+  
   let suspectInfo = await getSuspectInfo(currQuery);
-  // console.log(isSuspected)
+  
   if (isSuspected == true) {
     
   }
   else {
     // unsuspected
   }
-
 }
 
 function checkIfSubmit() {
@@ -96,14 +98,19 @@ function checkIfSubmit() {
               .then((response) => response.json())
               .then((json) => {
                 if (json == false)
-                setIsSuspected(2)
-                else {
+                  setIsSuspected(2)
+                else if (json == true){
                   setIsSuspected(3)
                 }
+                else {
+                  setIsSuspected(1)
+                }
+                
               })
               .catch((error) => {
-                console.error('whoops, ' + error);
+                // :D
               });
+              
 }
 
 function getSuspectInfo(id) {
@@ -115,7 +122,8 @@ function getSuspectInfo(id) {
                 return json;
               })
               .catch((error) => {
-                console.error('whoops, ' + error);
+                setSuspectName('חשוד אינו מזוהה')
+                // :D
               });
 }
 
@@ -141,12 +149,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-// container: {
-//   flex: 1,
-//   backgroundColor: '#ff6757',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-// },
-
-// fix styles, bad brackets

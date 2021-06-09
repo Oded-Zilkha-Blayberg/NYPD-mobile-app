@@ -7,6 +7,8 @@ import IdentifyScreen from './views/IdentifyScreen';
 import MapScreen from "./views/MapScreen";
 import NewReportScreen from "./views/NewReportScreen";
 import { StyleSheet, Text, View } from 'react-native';
+import LoginScreen from "./views/LoginScreen";
+
 
 
 
@@ -18,6 +20,9 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
+        <Stack.Screen 
+              name="login" 
+              component={LoginScreen} />
             <Stack.Screen
               name="identification"
               component={IdentifyScreen}
@@ -33,6 +38,7 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   </SafeAreaProvider>
+
 
   );
 }

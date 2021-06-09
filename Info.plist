@@ -1,0 +1,15 @@
+{
+  "expo": {
+    ...
+    "ios": {
+      ...
+      "infoPlist": {
+        ...
+        "UIBackgroundModes": [
+          "location",
+          "fetch"
+        ]
+      }
+    }
+  }
+}
