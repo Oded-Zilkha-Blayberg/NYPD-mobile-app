@@ -91,7 +91,7 @@ export default function KidnapForm() {
   let attacker = "";
   let kidnapped = "";
   let place = "";
-  let reporter = ""; 
+  let reporter = "גלי גרשטיין"; 
   let region ="";
   let time ="";
 
@@ -118,14 +118,17 @@ function setSelectedValue(text)  {
   region = text
 };
 
-function buildKidnapReport()  {
+
+async function buildKidnapReport()  {
+  const currLocation = await Location.getLastKnownPositionAsync();
+
   let report = {
     'criminal': attacker,
     'kidnapped': kidnapped,
     'last_place_known': place,
     'event_time': time,
     'report_time': new Date(),
-    'user_name': reporter,
+    'user_name': "גלי גרשטיין",
     'lat': currLocation.coords.latitude,
     'lon': currLocation.coords.longitude,
     'region': region,

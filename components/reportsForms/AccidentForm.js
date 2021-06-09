@@ -95,7 +95,7 @@ export default function AccidentForm() {
   let attacker = "";
   let injured = "";
   let injuredNumber = "";
-  let reporter = ""; 
+  let reporter = "גלי גרשטיין"; 
   let time = "";
   let region = ""; 
 
@@ -116,7 +116,7 @@ function updateReporter(text)  {
 
 
 function updateTime (event, selectedDate) {
-  time = selectedDate;
+  time = selectedDate || new Date();
 };
 
 function setSelectedValue(text)  {
@@ -129,14 +129,13 @@ async function buildAccidentReport()  {
 
   const currLocation = await Location.getLastKnownPositionAsync();
 
-
   let report = {
     'criminal': attacker,
     'casualties': injured,
     'number_of_casualties': injuredNumber,
     'event_time': time,
     'report_time': new Date(),
-    'user_name': reporter,
+    'user_name': "גלי גרשטיין",
     'lat': currLocation.coords.latitude,
     'lon': currLocation.coords.longitude,
     'region': region,

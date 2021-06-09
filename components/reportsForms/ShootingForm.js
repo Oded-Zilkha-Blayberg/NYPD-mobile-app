@@ -92,7 +92,7 @@ export default function ShootingForm() {
   let attacker = "";
   let weapon = "";
   let casualties = "";
-  let reporter = "";
+  let reporter = "גלי גרשטיין"; 
   let region ="";
   let time ="";
 
@@ -119,14 +119,17 @@ function setSelectedValue(text)  {
   region = text
 };
 
-function buildShootingReport()  {
+
+async function buildShootingReport()  {
+  const currLocation = await Location.getLastKnownPositionAsync();
+
   let report = {
     'criminal': attacker,
     'weapon_type': weapon,
     'casualties': casualties,
     'event_time': time,
     'report_time': new Date(),
-    'user_name': reporter,
+    'user_name': "גלי גרשטיין",
     'lat': currLocation.coords.latitude,
     'lon': currLocation.coords.longitude,
     'region': region,

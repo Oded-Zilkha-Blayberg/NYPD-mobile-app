@@ -97,7 +97,7 @@ export default function StabbingForm() {
   let attacker = "";
   let weapon = "";
   let casualties = "";
-  let reporter = ""; 
+  let reporter = "גלי גרשטיין"; 
   let region = "";
   let time ="";
 
@@ -124,14 +124,17 @@ function setSelectedValue(text)  {
   region = text
 };
 
-function buildStabbingReport()  {
+
+async function buildStabbingReport()  {
+  const currLocation = await Location.getLastKnownPositionAsync();
+
   let report = {
     'criminal': attacker,
     'casualties': casualties,
     'weapon_type': weapon,
     'event_time': time,
     'report_time': new Date(),
-    'user_name': reporter,
+    'user_name': "גלי גרשטיין",
     'lat': currLocation.coords.latitude,
     'lon': currLocation.coords.longitude,
     'region': region,
