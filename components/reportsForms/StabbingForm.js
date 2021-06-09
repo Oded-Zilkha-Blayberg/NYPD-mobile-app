@@ -1,16 +1,19 @@
 import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text, Picker } from 'react-native';
+import { Text, Picker, ScrollView , SafeAreaView } from 'react-native';
 import sendReportToServer from "./utils";
 
 
 export default function StabbingForm() {
 
   return (
+    <SafeAreaView>
+    <ScrollView >
     <Divider
     style={{
       borderBottomWidth: '0px',
+    
     }}>
         <Input
         placeholder='מי הדוקר'
@@ -38,20 +41,12 @@ export default function StabbingForm() {
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
-        //placeholderText='תאריך האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
+        onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
-        mode="date"
-        />
-        <DateTimePicker
-        //placeholderText='שעת האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
+        mode="datetime"
         />
         
         <Text>איזור האירוע</Text>
@@ -65,28 +60,20 @@ export default function StabbingForm() {
             <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
         </Picker>
 
-        <Input
-        placeholder='מי דיווח'
-        // value="{שם השוטר המחובר}"
-        style={{
-            textAlign: 'right',
-        }}
-        // disabled
-        onChangeText={text => updateReporter(text)}
-
-        />
-
-        <Button title="Send" onPress={() => {buildStabbingReport()}} >
-        </Button>
-
     </Divider>
+    </ScrollView>
+    <Button title="Send" onPress={() => {buildStabbingReport()}} >
+        </Button>
+    </SafeAreaView>
   );
+
 
   let attacker = "";
   let weapon = "";
   let casualties = "";
   let reporter = ""; 
   let region = "";
+  let time ="";
 
 function updateAttacker(text)  {
   attacker = text
@@ -103,6 +90,10 @@ function updateReporter(text)  {
   reporter = text
 };
 
+function updateTime (event, selectedDate) {
+  time = selectedDate;
+};
+
 function setSelectedValue(text)  {
   region = text
 };
@@ -112,14 +103,14 @@ function buildStabbingReport()  {
     'criminal': attacker,
     'casualties': casualties,
     'weapon_type': weapon,
-    'event_time': "11-20-2021",
+    'event_time': time,
     'report_time': new Date(),
     'user_name': reporter,
     'region': region,
     'lat': 41,
     'lon': -73,
     'event_type': 2,
-    'event_name':"stabbing"
+    'event_name':"דקירה"
   };
 
   sendReportToServer({report});

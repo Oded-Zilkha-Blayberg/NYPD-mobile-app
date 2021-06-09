@@ -1,13 +1,14 @@
 import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text, Picker } from 'react-native';
-// import console = require('console');
+import { Text, Picker, ScrollView , SafeAreaView} from 'react-native';
 import sendReportToServer from "./utils";
 
 export default function AccidentForm() {
 
   return (
+    <SafeAreaView>
+    <ScrollView >
     <Divider
     style={{
       borderBottomWidth: '0px',
@@ -36,46 +37,30 @@ export default function AccidentForm() {
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
-        //placeholderText='תאריך האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
         onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
-        mode="date"
+        mode="datetime"       
+        />
         
-        />
-        <DateTimePicker
-        //placeholderText='שעת האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        />
         <Text>איזור האירוע</Text>
-         {/* <Picker
-            placeholder="בחר איזור"
+         <Picker 
+            style={{ height: 150}}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
             <Picker.Item label="ברונקס" value="ברונקס" />
             <Picker.Item label="מנהטן" value="מנהטן" />
             <Picker.Item label="ברוקלין" value="ברוקלין" />
             <Picker.Item label="קווינס" value="קווינס" />
             <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
-        </Picker> */}
-        <Input
-        placeholder='מי דיווח'
-        // value="{שם השוטר המחובר}"
-        style={{
-            textAlign: 'right',
-        }}
-        onChangeText={text => updateReporter(text)}
-        // disabled
-        />
-
-        <Button title="Send" onPress={() => {buildAccidentReport()}} >
-        </Button>
+        </Picker>
+  
     </Divider>
+    </ScrollView>
+    <Button title="Send" onPress={() => {buildAccidentReport()}} >
+    </Button>
+    </SafeAreaView>
   );
 
   let attacker = "";
@@ -121,7 +106,7 @@ function buildAccidentReport()  {
     'lat': 41,
     'lon': -73,
     'event_type': 4,
-    'event_name':"accident"
+    'event_name':"תאונה"
   };
   
   sendReportToServer({report});

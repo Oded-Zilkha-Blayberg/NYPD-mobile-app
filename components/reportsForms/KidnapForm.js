@@ -1,15 +1,18 @@
 import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text, Picker } from 'react-native';
+import { Text, Picker, ScrollView , SafeAreaView } from 'react-native';
 import sendReportToServer from "./utils";
 
 export default function KidnapForm() {
 
   return (
+    <SafeAreaView>
+    <ScrollView >
     <Divider
     style={{
       borderBottomWidth: '0px',
+      height: 50
     }}>
         <Input
         placeholder='מי החוטף'
@@ -34,21 +37,14 @@ export default function KidnapForm() {
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
-        //placeholderText='תאריך האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
+        onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
-        mode="date"
+        mode="datetime"
         />
-        <DateTimePicker
-        //placeholderText='שעת האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        />
+        
         <Text>איזור האירוע</Text>
          <Picker
             placeholder="בחר איזור"
@@ -59,21 +55,12 @@ export default function KidnapForm() {
             <Picker.Item label="קווינס" value="קווינס" />
             <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
         </Picker>
-        <Input
-        placeholder='מי דיווח'
-        // value="{שם השוטר המחובר}"
-        style={{
-            textAlign: 'right',
-        }}
-        onChangeText={text => updateReporter(text)}
-
-        // disabled
-        />
-
-        <Button title="Send" onPress={() => {buildKidnapReport()}} >
-        </Button>
 
     </Divider>
+    </ScrollView>
+    <Button title="Send" onPress={() => {buildKidnapReport()}} >
+        </Button>
+    </SafeAreaView>
   );
 
   let attacker = "";
@@ -81,6 +68,7 @@ export default function KidnapForm() {
   let place = "";
   let reporter = ""; 
   let region ="";
+  let time ="";
 
 function updateAttacker(text)  {
   attacker = text
@@ -97,6 +85,10 @@ function updateReporter(text)  {
   reporter = text
 };
 
+function updateTime (event, selectedDate) {
+  time = selectedDate;
+};
+
 function setSelectedValue(text)  {
   region = text
 };
@@ -106,14 +98,14 @@ function buildKidnapReport()  {
     'criminal': attacker,
     'kidnapped': kidnapped,
     'last_place_known': place,
-    'event_time': "11-20-2021",
+    'event_time': time,
     'report_time': new Date(),
     'user_name': reporter,
     'region': region,
     'lat': 41,
     'lon': -73,
     'event_type': 3,
-    'event_name':"kidnap"
+    'event_name':"חטיפה"
   };
 
   sendReportToServer({report});

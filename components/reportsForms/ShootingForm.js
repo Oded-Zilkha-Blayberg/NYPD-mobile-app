@@ -1,13 +1,15 @@
 import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text, Picker  } from 'react-native';
+import { Text, Picker, ScrollView , SafeAreaView  } from 'react-native';
 import sendReportToServer from "./utils";
 
 
 export default function ShootingForm() {
 
   return (
+    <SafeAreaView>
+    <ScrollView >
     <Divider
     style={{
       borderBottomWidth: '0px',
@@ -35,21 +37,14 @@ export default function ShootingForm() {
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
-        //placeholderText='תאריך האירוע'
         testID="dateTimePicker"
         is24Hour={true}
         display="default"
+        onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
-        mode="date"
+        mode="datetime"
         />
-        <DateTimePicker
-        //placeholderText='שעת האירוע'
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        value={new Date()}
-        mode="time"
-        />
+        
         <Text>איזור האירוע</Text>
          <Picker
             placeholder="בחר איזור"
@@ -60,19 +55,12 @@ export default function ShootingForm() {
             <Picker.Item label="קווינס" value="קווינס" />
             <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
         </Picker>
-        <Input
-        placeholder='מי דיווח'
-        // value="{שם השוטר המחובר}"
-        style={{
-            textAlign: 'right',
-        }}
-        // disabled
-        onChangeText={text => updateReporter(text)}
-        />
 
-        <Button title="Send" onPress={() => {buildShootingReport()}} >
-        </Button>
     </Divider>
+    </ScrollView>
+    <Button title="Send" onPress={() => {buildShootingReport()}} >
+        </Button>
+    </SafeAreaView>
   );
 
   let attacker = "";
@@ -80,6 +68,7 @@ export default function ShootingForm() {
   let casualties = "";
   let reporter = "";
   let region ="";
+  let time ="";
 
 function updateAttacker(text)  {
   attacker = text
@@ -96,6 +85,10 @@ function updateReporter(text)  {
   reporter = text
 };
 
+function updateTime (event, selectedDate) {
+  time = selectedDate;
+};
+
 function setSelectedValue(text)  {
   region = text
 };
@@ -105,14 +98,14 @@ function buildShootingReport()  {
     'criminal': attacker,
     'weapon_type': weapon,
     'casualties': casualties,
-    'event_time': "11-20-2021",
+    'event_time': time,
     'report_time': new Date(),
     'user_name': reporter,
     'region': region,
     'lat': 41,
     'lon': -73,
     'event_type': 1,
-    'event_name':"shooting"
+    'event_name':"ירי"
   };
 
   sendReportToServer({report});
