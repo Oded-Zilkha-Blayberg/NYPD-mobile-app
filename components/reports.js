@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const styles = StyleSheet.create({
+// const styles = StyleSheet.create({
   
 
-});
+// });
 
 export default function Navbar({navigation}) {
 

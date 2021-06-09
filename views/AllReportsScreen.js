@@ -11,7 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Reports from "../components/Reports";
+import Reports from "../components/reports";
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
