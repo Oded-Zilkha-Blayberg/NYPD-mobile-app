@@ -38,7 +38,6 @@ export default function KidnapForm() {
     <Divider
     style={{
       borderBottomWidth: '0px',
-      height: 50
     }}>
         <Input
         placeholder='מי החוטף'
@@ -73,7 +72,7 @@ export default function KidnapForm() {
         
         <Text>איזור האירוע</Text>
          <Picker
-            placeholder="בחר איזור"
+            style={{ height: 150}}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
             <Picker.Item label="ברונקס" value="ברונקס" />
             <Picker.Item label="מנהטן" value="מנהטן" />

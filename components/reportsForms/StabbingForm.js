@@ -35,58 +35,58 @@ export default function StabbingForm() {
 
   return (
     <SafeAreaView>
-    <ScrollView >
-    <Divider
-    style={{
-      borderBottomWidth: '0px',
-    
-    }}>
-        <Input
-        placeholder='מי הדוקר'
-        style={{
-            textAlign: 'right',
-        }}
-        onChangeText={text => updateAttacker(text)}
+      <ScrollView>
+      <Divider
+      style={{
+        borderBottomWidth: '0px',
+      
+      }}>
+          <Input
+          placeholder='מי הדוקר'
+          style={{
+              textAlign: 'right',
+          }}
+          onChangeText={text => updateAttacker(text)}
 
-        />
-        <Input
-        placeholder='סוג נשק'
-        style={{
-            textAlign: 'right',
-        }}
-        onChangeText={text => updateWeapon(text)}
+          />
+          <Input
+          placeholder='סוג נשק'
+          style={{
+              textAlign: 'right',
+          }}
+          onChangeText={text => updateWeapon(text)}
 
-        />
-        <Input
-        placeholder=' נפגעים'
-        style={{
-            textAlign: 'right',
-        }}
-        onChangeText={text => updateCasualties(text)}
+          />
+          <Input
+          placeholder=' נפגעים'
+          style={{
+              textAlign: 'right',
+          }}
+          onChangeText={text => updateCasualties(text)}
 
-        />
-        <Text>זמן האירוע</Text>
-        <DateTimePicker
-        testID="dateTimePicker"
-        is24Hour={true}
-        display="default"
-        onChange={(event, selectedDate) => updateTime(event, selectedDate)}
-        value={new Date()}
-        mode="datetime"
-        />
-        
-        <Text>איזור האירוע</Text>
-         <Picker
-            placeholder="בחר איזור"
-            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
-            <Picker.Item label="ברונקס" value="ברונקס" />
-            <Picker.Item label="מנהטן" value="מנהטן" />
-            <Picker.Item label="ברוקלין" value="ברוקלין" />
-            <Picker.Item label="קווינס" value="קווינס" />
-            <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
-        </Picker>
+          />
+          <Text>זמן האירוע</Text>
+          <DateTimePicker
+          testID="dateTimePicker"
+          is24Hour={true}
+          display="default"
+          onChange={(event, selectedDate) => updateTime(event, selectedDate)}
+          value={new Date()}
+          mode="datetime"
+          />
+          
+          <Text>איזור האירוע</Text>
+          <Picker
+              style={{ height: 150}}
+              onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
+              <Picker.Item label="ברונקס" value="ברונקס" />
+              <Picker.Item label="מנהטן" value="מנהטן" />
+              <Picker.Item label="ברוקלין" value="ברוקלין" />
+              <Picker.Item label="קווינס" value="קווינס" />
+              <Picker.Item label="סטייטן איילנד" value="סטייטן איילנד" />
+          </Picker>
 
-    </Divider>
+      </Divider>
     </ScrollView>
     <Button title="Send" onPress={() => {buildStabbingReport()}} >
         </Button>

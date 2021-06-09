@@ -6,7 +6,6 @@ import { Platform, Text, View, StyleSheet, Picker, ScrollView , SafeAreaView  } 
 import * as Location from 'expo-location';
 
 
-
 export default function ShootingForm() {
 
   const [location, setLocation] = useState(null);
@@ -74,7 +73,7 @@ export default function ShootingForm() {
         
         <Text>איזור האירוע</Text>
          <Picker
-            placeholder="בחר איזור"
+            style={{ height: 150}}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
             <Picker.Item label="ברונקס" value="ברונקס" />
             <Picker.Item label="מנהטן" value="מנהטן" />
