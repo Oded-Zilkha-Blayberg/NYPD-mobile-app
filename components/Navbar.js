@@ -43,7 +43,7 @@ export default function Navbar({navigation}) {
     <React.Fragment>
         <Divider style={styles.appBar}>
             <Icon name='home' iconStyle={styles.navIcon} 
-            onPress={() => navigation.navigate('login')}/>
+            onPress={() => navigation.navigate('home')}/>
             <Icon name='search' iconStyle={styles.navIcon}  
             onPress={() => navigation.navigate('identification')} />
             <FAB icon={{ name: "add", color: "white"}}
@@ -53,7 +53,8 @@ export default function Navbar({navigation}) {
 
             <Icon name='map' iconStyle={styles.navIcon} 
             onPress={() => navigation.navigate('map')}/>
-            <Icon name='announcement' iconStyle={styles.navIcon} />
+            <Icon name='announcement' iconStyle={styles.navIcon} 
+            onPress={() => navigation.navigate('allReports')}/>
         </Divider>
 
     </React.Fragment>
