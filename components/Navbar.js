@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position:"absolute",
     width: "100%",
-    padding: 20,
+    padding: 15,
     backgroundColor:'#f8f9fb',
     bottom: 0,
   },

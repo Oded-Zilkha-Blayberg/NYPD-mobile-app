@@ -4,7 +4,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text, Picker, ScrollView , SafeAreaView  } from 'react-native';
 import sendReportToServer from "./utils";
 
-
 export default function ShootingForm() {
 
   return (
@@ -47,7 +46,7 @@ export default function ShootingForm() {
         
         <Text>איזור האירוע</Text>
          <Picker
-            placeholder="בחר איזור"
+            style={{ height: 150}}
             onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
             <Picker.Item label="ברונקס" value="ברונקס" />
             <Picker.Item label="מנהטן" value="מנהטן" />

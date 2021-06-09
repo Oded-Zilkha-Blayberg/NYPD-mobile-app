@@ -13,7 +13,7 @@ const [flag,setFlag]=useState(0);
     <Divider
     style={{
       borderBottomWidth: '0px',
-      top: 130
+      top: 140
     }}>
         <Divider
         style={{
