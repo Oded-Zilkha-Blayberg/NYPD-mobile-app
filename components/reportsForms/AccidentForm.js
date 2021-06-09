@@ -1,7 +1,9 @@
 import React from 'react';
-import { Divider, Input } from 'react-native-elements';
+import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Text } from 'react-native';
+// import console = require('console');
+import sendReportToServer from "./utils";
 
 export default function AccidentForm() {
 
@@ -15,12 +17,14 @@ export default function AccidentForm() {
         style={{
             textAlign: 'right',
         }}
+        onChangeText={text => updateAttacker(text)}
         />
         <Input
         placeholder='מי הנפגע'
         style={{
             textAlign: 'right',
         }}
+        onChangeText={text => updateInjured(text)}
         />
         <Input
         placeholder='מספר נפגעים'
@@ -28,6 +32,7 @@ export default function AccidentForm() {
             textAlign: 'right',
         }}
         keyboardType={'numeric'}
+        onChangeText={text => updateNumber(text)}
         />
         <Text>זמן האירוע</Text>
         <DateTimePicker
@@ -67,12 +72,55 @@ export default function AccidentForm() {
         />
         <Input
         placeholder='מי דיווח'
-        value="{שם השוטר המחובר}"
+        // value="{שם השוטר המחובר}"
         style={{
             textAlign: 'right',
         }}
-        disabled
+        onChangeText={text => updateReporter(text)}
+        // disabled
         />
+
+        <Button title="Send" onPress={() => {buildAccidentReport()}} >
+        </Button>
     </Divider>
   );
+
+  let attacker = "";
+  let injured = "";
+  let injuredNumber = "";
+  let reporter = ""; 
+
+function updateAttacker(text)  {
+  attacker = text
+};
+function updateInjured(text)  {
+  injured = text
+};
+
+function updateNumber(text)  {
+  injuredNumber = text
+};
+
+function updateReporter(text)  {
+  reporter = text
+};
+
+function buildAccidentReport()  {
+  let report = {
+    'criminal': attacker,
+    'casualties': injured,
+    'number_of_casualties': injuredNumber,
+    'event_time': "11-20-2021",
+    'report_time': "09-15-2021",
+    'user_name': reporter,
+    'lat': 41,
+    'lon': -73,
+    'event_type': 4,
+    'event_name':"accident"
+  };
+
+  console.log(report);
+  sendReportToServer({report});
+};
+
 }
