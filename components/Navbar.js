@@ -56,24 +56,6 @@ export default function Navbar({navigation}) {
             <Icon name='announcement' iconStyle={styles.navIcon} />
         </Divider>
 
-        {/* <AppBar position="fixed" className={classes.appBar}>
-            <BottomNavigation
-            // value={value}
-            // onChange={(event, newValue) => {
-            //     setValue(newValue);
-            // }}
-            showLabels
-            className={classes.root}
-            >
-                <BottomNavigationAction label="בית" icon={<HomeRoundedIcon />} />
-                <BottomNavigationAction label="זיהוי חשוד" icon={<SearchRoundedIcon />} />
-                <Fab aria-label="add" color="inherit" className={classes.fabButton}>
-                    <AddIcon />
-                </Fab>
-                <BottomNavigationAction label="מפה" icon={<MapRoundedIcon />}/>
-                <BottomNavigationAction label="דיווחים" icon={<AnnouncementRoundedIcon />}/>
-            </BottomNavigation>                   
-        </AppBar>  */}
     </React.Fragment>
   );
 }

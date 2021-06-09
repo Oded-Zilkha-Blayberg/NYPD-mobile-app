@@ -3,8 +3,7 @@ import Navbar from "./Navbar";
 import { Icon, Input, FAB, Text, Image } from 'react-native-elements';
 import { Divider } from 'react-native-elements';
 import { StyleSheet, View, ImageBackground } from 'react-native';
-// import { url } from 'inspector';
-// import { Button } from '@material-ui/core';
+
 // import "@fontsource/heebo";
 
 const loginAPI = 'http://siton-backend-securityapp3.apps.openforce.openforce.biz';
@@ -39,7 +38,8 @@ export default function Login(props) {
                     <Icon name='person' />
                 }></Input>
                 <Input placeholder='סיסמה' writingDirection='rtl' onChangeText={text => setPassword(text)} rightIcon={{ type: 'material', name: 'lock' }}></Input>
-                <FAB onPress={attemptLogin()} color="#040848" title='התחבר' ></FAB>
+                <FAB onPress={() => 
+                    attemptLogin()} color="#040848" title='התחבר' ></FAB>
                 </Divider>
             </ImageBackground>
             
