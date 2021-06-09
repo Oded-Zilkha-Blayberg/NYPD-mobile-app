@@ -8,14 +8,25 @@ import MapScreen from "./views/MapScreen";
 import NewReportScreen from "./views/NewReportScreen";
 import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from "./views/LoginScreen";
+import RNEventSource from 'react-native-event-source';
 
 
 
 
 // Configure JSS
 const Stack = createStackNavigator();
+const options = { headers: { Authorization: 'Bearer ...' } };
+const eventSource = new RNEventSource('http://siton-backend-securityapp3.apps.openforce.openforce.biz/users/login', options );
+// ask gali for api
+
 
 export default function App() {
+
+  eventSource.addEventListener('message', (event) => {
+    console.log(event.type); // message
+    console.log(event.data);
+  });
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>

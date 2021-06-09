@@ -124,7 +124,12 @@ function setSelectedValue(text)  {
   region = text
 };
 
-function buildStabbingReport()  {
+
+
+async function buildStabbingReport()  {
+
+  const currLocation = await Location.getLastKnownPositionAsync();
+  
   let report = {
     'criminal': attacker,
     'casualties': casualties,

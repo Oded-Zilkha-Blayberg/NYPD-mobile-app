@@ -118,7 +118,10 @@ function setSelectedValue(text)  {
   region = text
 };
 
-function buildKidnapReport()  {
+async function buildKidnapReport()  {
+  
+  const currLocation = await Location.getLastKnownPositionAsync();
+
   let report = {
     'criminal': attacker,
     'kidnapped': kidnapped,

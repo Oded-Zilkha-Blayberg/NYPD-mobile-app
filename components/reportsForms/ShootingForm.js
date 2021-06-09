@@ -119,7 +119,10 @@ function setSelectedValue(text)  {
   region = text
 };
 
-function buildShootingReport()  {
+async function buildShootingReport()  {
+
+  const currLocation = await Location.getLastKnownPositionAsync();
+  
   let report = {
     'criminal': attacker,
     'weapon_type': weapon,
