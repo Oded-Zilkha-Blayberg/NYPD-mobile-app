@@ -1,11 +1,37 @@
 import React from 'react';
 import { Divider, Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text } from 'react-native';
 import sendReportToServer from "./utils";
-
+import { Platform, Text, View, StyleSheet } from 'react-native';
+import * as Location from 'expo-location';
 
 export default function StabbingForm() {
+
+  
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+  
 
   return (
     <Divider
@@ -117,8 +143,8 @@ function buildStabbingReport()  {
     'event_time': "11-20-2021",
     'report_time': "09-15-2021",
     'user_name': reporter,
-    'lat': 41,
-    'lon': -73,
+    'lat': currLocation.coords.latitude,
+    'lon': currLocation.coords.longitude,
     'event_type': 2,
     'event_name':"stabbing"
   };
