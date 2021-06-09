@@ -44,7 +44,7 @@ export default function Navbar({navigation}) {
         <Divider style={styles.appBar}>
             <Icon name='home' iconStyle={styles.navIcon} 
             onPress={() => navigation.navigate('login')}/>
-            <Icon name='search' iconStyle={styles.navIcon} 
+            <Icon name='search' iconStyle={styles.navIcon}  
             onPress={() => navigation.navigate('identification')} />
             <FAB icon={{ name: "add", color: "white"}}
                 color="#040848" 
