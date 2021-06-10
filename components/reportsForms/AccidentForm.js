@@ -71,7 +71,7 @@ export default function AccidentForm() {
         display="default"
         onChange={(event, selectedDate) => updateTime(event, selectedDate)}
         value={new Date()}
-        mode="datetime"       
+        mode="date"       
         />
         
         <Text>איזור האירוע</Text>
