@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: "row",
-        // backgroundColor:"#040848",
         color:"white",
         position:"absolute",
         width:"100%",
@@ -86,7 +85,7 @@ export default function Home({navigation}) {
     return (
         <React.Fragment>
             <LinearGradient
-                colors={['#4c669f', '#3b5998', '#192f6a']}
+                colors={['#040848', '#223c80', '#3b5998']}
                 style={styles.titleContainer}>
                 <Text style={styles.username}>{global.user}</Text>
                 <Text style={styles.title}>בוקר טוב, </Text>
@@ -123,6 +122,7 @@ export default function Home({navigation}) {
                     </TouchableOpacity>
                 </Divider>
                 <Text style={styles.subtitle}>נוצר באהבה על ידי ולדימיר המלך, ענבר, עודד ומיכאל</Text>
+                <Text style={styles.subtitle}>תודות נוספות: אוראל אמיתי הרש"ציתתתת, סמיח הרש"ץץץ, וגיא הרמ"דדד (בתמיכת שי"ש, ג'וני וגלי גרשטיין)</Text>
             </View>
 
             <Navbar navigation = {navigation}></Navbar>
