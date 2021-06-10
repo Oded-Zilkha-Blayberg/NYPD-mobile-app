@@ -90,7 +90,7 @@ export default function Home({navigation}) {
                 style={styles.titleContainer}>
                 <Text style={styles.username}>{global.user}</Text>
                 <Text style={styles.title}>בוקר טוב, </Text>
-                <Avatar source={{uri: global.userPicture}} />
+                <Avatar rounded size="large" source={{uri: global.userPicture}} />
             </LinearGradient>
 
             <View>
